@@ -1,0 +1,9 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <DockPanel>
+    <TextBlock DockPanel.Dock="Top" Text="Hero Search" />
+    <TextBox DockPanel.Dock="Top" Text="{Binding SearchTerm}" />
+    <ListBox Items="{Binding Heroes}" />
+  </DockPanel>
+</UserControl>

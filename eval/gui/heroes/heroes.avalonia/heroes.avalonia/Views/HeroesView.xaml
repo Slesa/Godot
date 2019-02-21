@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <StackPanel>
+    <StackPanel>
+      <TextBlock Text="Hero name:" />
+      <TextBox Text="{Binding NewHeroName}" />
+      <Button Command="{Binding AddCommand}" />
+    </StackPanel>
+
+    <ListBox Items="{Binding Heroes}" />
+    
+  </StackPanel>
+</UserControl>

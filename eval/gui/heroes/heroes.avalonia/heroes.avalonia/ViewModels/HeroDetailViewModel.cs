@@ -3,7 +3,7 @@ using ReactiveUI;
 
 namespace heroes.avalonia.ViewModels
 {
-    public class HeroDetailViewModel
+    public class HeroDetailViewModel : ReactiveObject
     {
         public HeroDetailViewModel()
         {
@@ -11,13 +11,19 @@ namespace heroes.avalonia.ViewModels
             GoBackCommand = ReactiveCommand.Create(GoBack);
         }
 
-        public string HeroName { get; set; }
+        string _heroName;
+        public string HeroName 
+        { 
+            get { return _heroName; } 
+            set { this.RaiseAndSetIfChanged(ref _heroName, value); }
+        }
 
         public ReactiveCommand<Unit, Unit> SaveCommand { get; }
         public ReactiveCommand<Unit, Unit> GoBackCommand { get; }
 
         void Save()
         {
+            System.Console.WriteLine("SAVE");
         }
 
         void GoBack()

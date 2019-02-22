@@ -3,13 +3,13 @@
              xmlns:vm="clr-namespace:heroes.avalonia.ViewModels;assembly=heroes.avalonia">
 
   <Design.DataContext>
-    <vm:HeroDetailDesignModel />
+    <vm:HeroDetailViewModel />
   </Design.DataContext>
 
 
   <StackPanel>
     <StackPanel Orientation="Horizontal">
-      <TextBlock Text="{Binding Hero.Name, Mode=OneWay}" />
+      <TextBlock Text="{Binding HeroName}" />
       <TextBlock Text=" Details" />
     </StackPanel>
     <TextBlock Text="Name:" />

@@ -1,5 +1,6 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="clr-namespace:heroes.avalonia.Views;assembly=heroes.avalonia"
         xmlns:vm="clr-namespace:heroes.avalonia.ViewModels;assembly=heroes.avalonia"
         Icon="resm:heroes.avalonia.Assets.avalonia-logo.ico"
         Title="heroes.avalonia">
@@ -14,6 +15,6 @@
     <vm:MainWindowViewModel/>
   </Design.DataContext>
 
-  <HeroDetailView />
+  <v:HeroDetailView DataContext="{Binding HeroDetailViewModel}" />
   
 </Window>

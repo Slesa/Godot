@@ -1,5 +1,11 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:heroes.avalonia.ViewModels;assembly=heroes.avalonia">
+
+  <Design.DataContext>
+    <vm:HeroDetailDesignModel />
+  </Design.DataContext>
+
 
   <StackPanel>
     <StackPanel Orientation="Horizontal">
@@ -13,4 +19,5 @@
       <Button Command="{Binding GoBackCommand}" Content="Go back" />
     </StackPanel>
   </StackPanel>
+
 </UserControl>

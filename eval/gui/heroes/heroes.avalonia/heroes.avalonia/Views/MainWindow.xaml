@@ -3,11 +3,17 @@
         xmlns:vm="clr-namespace:heroes.avalonia.ViewModels;assembly=heroes.avalonia"
         Icon="resm:heroes.avalonia.Assets.avalonia-logo.ico"
         Title="heroes.avalonia">
-
+  <Window.Styles>
+    <Style Selector="TextBlock.h1">
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+  </Window.Styles>
+  
   <Design.DataContext>
     <vm:MainWindowViewModel/>
   </Design.DataContext>
-  
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+  <HeroDetailView />
   
 </Window>

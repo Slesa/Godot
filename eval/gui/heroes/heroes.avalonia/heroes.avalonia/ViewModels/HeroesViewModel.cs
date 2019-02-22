@@ -5,7 +5,7 @@ using ReactiveUI;
 
 namespace heroes.avalonia.ViewModels
 {
-    public class HeroesViewModel
+    public class HeroesViewModel : ReactiveObject
     {
         public HeroesViewModel()
         {
@@ -14,16 +14,25 @@ namespace heroes.avalonia.ViewModels
             DeleteCommand = ReactiveCommand.Create(Delete);
         }
 
+        string _newHeroName;
+        public string NewHeroName 
+        { 
+            get { return _newHeroName; } 
+            set { this.RaiseAndSetIfChanged(ref _newHeroName, value); }
+        }
+
         public ObservableCollection<Hero> Heroes { get; }
         public ReactiveCommand<Unit, Unit> AddCommand { get; }
         public ReactiveCommand<Unit, Unit> DeleteCommand { get; }
 
         void Add()
         {
+            System.Console.WriteLine("ADD");
         }
 
         void Delete()
         {
+            System.Console.WriteLine("DEL");
         }
     }
 }

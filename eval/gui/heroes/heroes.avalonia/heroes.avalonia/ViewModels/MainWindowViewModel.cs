@@ -16,5 +16,14 @@ namespace heroes.avalonia.ViewModels
                 return _heroDetailViewModel;
             }
         }
+
+        HeroesViewModel _heroesViewModel;
+        public HeroesViewModel HeroesViewModel {
+            get { 
+                if( _heroesViewModel==null) 
+                    _heroesViewModel = new HeroesViewModel();
+                return _heroesViewModel;
+            }
+        }
     }
 }

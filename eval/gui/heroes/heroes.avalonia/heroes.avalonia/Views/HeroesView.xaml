@@ -1,14 +1,31 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:m="clr-namespace:heroes.avalonia.Models;assembly=heroes.avalonia"
+             >
 
-  <StackPanel>
-    <StackPanel>
-      <TextBlock Text="Hero name:" />
+  <UserControl.Styles>
+    <Style Selector="Button">
+      <Setter Property="Margin" Value="10,0" />
+    </Style>
+  </UserControl.Styles>
+
+  <UserControl.DataTemplates>
+    <DataTemplate DataType="{x:Type m:Hero}">
+      <DockPanel>
+        <Button DockPanel.Dock="Right" Content="X" Command="{Binding DeleteCommand}" />
+        <TextBlock Text="{Binding Name}" />
+      </DockPanel>
+    </DataTemplate>
+  </UserControl.DataTemplates>
+
+  <DockPanel>
+    <DockPanel DockPanel.Dock="Top">
+      <TextBlock DockPanel.Dock="Left" Text="Hero name:" />
+      <Button DockPanel.Dock="Right" Command="{Binding AddCommand}" Content="Add" />
       <TextBox Text="{Binding NewHeroName}" />
-      <Button Command="{Binding AddCommand}" />
-    </StackPanel>
+    </DockPanel>
 
-    <ListBox Items="{Binding Heroes}" />
+    <ItemsControl Items="{Binding Heroes}" />
     
-  </StackPanel>
+  </DockPanel>
 </UserControl>

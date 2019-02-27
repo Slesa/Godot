@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoEntry } from '../todoentry';
-import { TODOENTRIES } from '../mock-todoentries';
+import { TodoService } from '../todo.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-todos',
@@ -9,11 +10,23 @@ import { TODOENTRIES } from '../mock-todoentries';
 })
 export class TodosComponent implements OnInit {
 
-  todoentries = TODOENTRIES;
+  todoEntries: TodoEntry[];
 
-  constructor() { }
+  constructor(
+    private todoService: TodoService,
+    private messages: MessageService) { }
 
   ngOnInit() {
+    this.messages.add(`Todos init`);
+    this.getTodoEntries();
   }
 
+  getTodoEntries(): void {
+    this.todoService.getTodoEntries()
+      .subscribe(
+        todos => {
+          this.messages.add(`loaded ${todos.length}`);
+          this.todoEntries = todos;
+        });
+  }
 }

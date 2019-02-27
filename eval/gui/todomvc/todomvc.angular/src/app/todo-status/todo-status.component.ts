@@ -10,6 +10,7 @@ export class TodoStatusComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(`Todo Status init`);
   }
 
 }

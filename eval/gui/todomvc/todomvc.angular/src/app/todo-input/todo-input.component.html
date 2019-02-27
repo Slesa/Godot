@@ -1,4 +1,5 @@
 <div>
   <button class="button toggle-all">All</button>
-  <input class="edit" [(ngModel)]="newTodo" placeholder="What needs to be done?" />
+  <input #box class="edit" [(ngModel)]="newTodo" placeholder="What needs to be done?"
+    (keyup.enter)="onEnter(box.Value)"/>
 </div>>

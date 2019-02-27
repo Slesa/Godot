@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoEntry } from '../todoentry';
+import { TODOENTRIES } from '../mock-todoentries';
 
 @Component({
   selector: 'app-todos',
@@ -8,12 +9,7 @@ import { TodoEntry } from '../todoentry';
 })
 export class TodosComponent implements OnInit {
 
-  todo: TodoEntry = {
-    id: 1,
-    text: "Needs to be done",
-    done: false,
-    archieved: false
-  };
+  todoentries = TODOENTRIES;
 
   constructor() { }
 

@@ -11,7 +11,6 @@ import { MessageService } from '../message.service';
 export class TodosComponent implements OnInit {
 
   todoEntries: TodoEntry[];
-  newTodo : string = '';
 
   constructor(
     private todoService: TodoService,
@@ -31,9 +30,10 @@ export class TodosComponent implements OnInit {
         });
   }
 
-  onInput(event) {
-    console.log(`Got input ${this.newTodo} / ${event}`);
-    this.getTodoEntries();
+  onEntryAdded(todo) {
+    this.messages.add(`Reloading entries due to ${todo}`);
+    //this.todoEntries.push(todo);
+    // this.getTodoEntries();
   }
 
 }

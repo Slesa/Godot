@@ -38,17 +38,17 @@ export class TodoService {
       );
   }
 
-  addTodoEntry(todoEntry: string): Observable<any> {
-    this.log(`adding todo ${todoEntry}`);
-    return this.http.put(this.todosUrl, todoEntry, httpOptions).pipe(
-      tap(_ => this.log(`added todo ${todoEntry}`)),
+  addTodoEntry(todoEntry: TodoEntry): Observable<TodoEntry> {
+    this.log(`adding todo ${todoEntry.text}`);
+    return this.http.post(this.todosUrl, todoEntry, httpOptions).pipe(
+      tap(_ => this.log(`added todo ${todoEntry.id}`)),
       catchError(this.handleError<any>('addTodo'))
     );
   }
 
-  updateTodoEntry(todoEntry: TodoEntry): Observable<any> {
+  updateTodoEntry(todoEntry: TodoEntry): Observable<TodoEntry> {
     this.log(`updating todo ${todoEntry.text}`);
-    return this.http.put(this.todosUrl, todoEntry, httpOptions).pipe(
+    return this.http.post(this.todosUrl, todoEntry, httpOptions).pipe(
       tap(_ => this.log(`updated todo ${todoEntry.id}`)),
       catchError(this.handleError<any>('updateTodo'))
     );

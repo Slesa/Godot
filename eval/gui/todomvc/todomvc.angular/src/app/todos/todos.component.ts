@@ -11,6 +11,7 @@ import { MessageService } from '../message.service';
 export class TodosComponent implements OnInit {
 
   todoEntries: TodoEntry[];
+  newTodo : string = '';
 
   constructor(
     private todoService: TodoService,
@@ -29,4 +30,10 @@ export class TodosComponent implements OnInit {
           this.todoEntries = todos;
         });
   }
+
+  onInput(event) {
+    console.log(`Got input ${this.newTodo} / ${event}`);
+    this.getTodoEntries();
+  }
+
 }

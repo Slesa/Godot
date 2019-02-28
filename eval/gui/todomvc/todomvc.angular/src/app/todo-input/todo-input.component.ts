@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoEntry } from '../todoentry';
 import { TodoService } from '../todo.service';
 import { MessageService } from '../message.service';
@@ -10,7 +10,11 @@ import { MessageService } from '../message.service';
 })
 export class TodoInputComponent implements OnInit {
 
+  @Input()
   newTodo: string;
+
+  @Output()
+  onInput : EventEmitter<any> = new EventEmitter<any>();
   
   constructor(
     private todoService: TodoService,
@@ -20,8 +24,9 @@ export class TodoInputComponent implements OnInit {
   }
 
   onEnter(text: string) {
-    this.messageService.add(`Adding ${text}`)
+    this.messageService.add(`Entered ${this.newTodo}`)
     this.newTodo = text;
-    this.todoService.updateTodoEntry({text} as TodoEntry);
+    this.todoService.addTodoEntry(this.newTodo);
+    this.onInput.emit(this.newTodo);
   } 
 }

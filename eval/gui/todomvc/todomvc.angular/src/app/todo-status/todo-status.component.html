@@ -1,7 +1,16 @@
-<div>
-    <label>Item(s) left</label>
+<footer class="footer">
+    ::before
+    <span class="todo-count">
+        <strong data-bind:="text: pendingCount">0</strong>
+<!-- react-text: 24 -->
+<!-- /react-text -->
+<span data-bind:="text: pendingWord">items</span>
+<!-- react-text: 26 -->
+         left
+<!-- /react-text -->
+    </span>
     <Button>All</Button> 
     <Button>Active</Button>
     <Button>Completed</Button>
     <Button>Clear completed</Button>
-</div>
+</footer>

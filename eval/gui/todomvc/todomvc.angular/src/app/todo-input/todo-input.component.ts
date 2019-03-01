@@ -24,14 +24,14 @@ export class TodoInputComponent implements OnInit {
   ngOnInit() {
   }
 
-  onEnter(event) {
-    this.messageService.add(`Entered ${this.newTodo}`)
+  onEnter($event) {
+    //this.messageService.add(`Entered ${this.newTodo} in ${$event}`)
     // this.newTodo = text;
-    this.todoService.addTodoEntry( new TodoEntry(this.newTodo) )
+    this.todoService.addTodoEntry( {text:this.newTodo, done:false, archieved:false} as TodoEntry )
       .subscribe( todo => 
         {
-          this.messageService.add(`Accepted ${todo.text}`)
-          this.entryAdded.emit({event, todo});
+          //this.messageService.add(`Accepted ${todo.text}`)
+          this.entryAdded.emit({event:$event, todo:todo});
           this.newTodo = "";
         });
         

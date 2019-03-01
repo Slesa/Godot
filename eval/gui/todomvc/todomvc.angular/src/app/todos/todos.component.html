@@ -1,7 +1,8 @@
-<app-todo-input (entryAdded)="onEntryAdded(event,todo)"></app-todo-input>
+<app-todo-input (entryAdded)="onEntryAdded($event)"></app-todo-input>
 <ul class="todo-list">
   <li *ngFor="let todo of todoEntries">
     <div class="toggle"><button class="toggle">Toggle</button></div>
+    <div><span>id: {{todo.id}}</span></div>
     <div><span>text: {{todo.text}}</span></div>
     <div><span>done: {{todo.done}}</span></div>
     <div><span>arch: {{todo.archieved}}</span></div>

@@ -39,9 +39,9 @@ export class TodoService {
   }
 
   addTodoEntry(todoEntry: TodoEntry): Observable<TodoEntry> {
-    this.log(`adding todo ${todoEntry.text}`);
+    //this.log(`adding todo ${todoEntry.text}`);
     return this.http.post(this.todosUrl, todoEntry, httpOptions).pipe(
-      tap(_ => this.log(`added todo ${todoEntry.id}`)),
+      tap(_ => this.log(`added todo ${todoEntry.text}`)),
       catchError(this.handleError<any>('addTodo'))
     );
   }

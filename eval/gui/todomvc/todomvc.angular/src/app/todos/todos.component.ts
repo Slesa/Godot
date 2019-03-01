@@ -25,14 +25,14 @@ export class TodosComponent implements OnInit {
     this.todoService.getTodoEntries()
       .subscribe(
         todos => {
-          this.messages.add(`loaded ${todos.length}`);
+          //this.messages.add(`loaded ${todos.length}`);
           this.todoEntries = todos;
         });
   }
 
-  onEntryAdded(todo) {
-    this.messages.add(`Reloading entries due to ${todo}`);
-    //this.todoEntries.push(todo);
+  onEntryAdded($event) {
+    //this.messages.add(`Reloading entries due to ${$event.event} / ${$event.todo}`);
+    this.todoEntries.push($event.todo);
     // this.getTodoEntries();
   }
 

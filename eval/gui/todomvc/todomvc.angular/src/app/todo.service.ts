@@ -46,6 +46,15 @@ export class TodoService {
     );
   }
 
+  delTodoEntry(todoEntry: TodoEntry | number): Observable<TodoEntry> {
+    const id = typeof todoEntry === 'number' ? todoEntry : todoEntry.id;
+    const url = `${this.todosUrl}/${id}`;
+    return this.http.delete<TodoEntry>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted todo ${id}`)),
+      catchError(this.handleError<TodoEntry>('delTodo'))
+    );
+  }
+
   updateTodoEntry(todoEntry: TodoEntry): Observable<TodoEntry> {
     this.log(`updating todo ${todoEntry.text}`);
     return this.http.post(this.todosUrl, todoEntry, httpOptions).pipe(

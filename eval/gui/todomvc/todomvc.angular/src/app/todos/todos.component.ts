@@ -11,6 +11,7 @@ import { MessageService } from '../message.service';
 export class TodosComponent implements OnInit {
 
   todoEntries: TodoEntry[];
+  oldText: string;
 
   constructor(
     private todoService: TodoService,
@@ -35,5 +36,24 @@ export class TodosComponent implements OnInit {
     this.todoEntries.push($event.todo);
     // this.getTodoEntries();
   }
+  onEntryRemove($event) {
+    //this.messages.add(`Reloading entries due to ${$event.event} / ${$event.todo}`);
+    this.todoEntries = this.todoEntries.filter(todo => todo.id !== $event.todo.id);
+    this.todoService.delTodoEntry($event.todo).subscribe();
+  }
 
+  onEntryEdit($event) {
+    this.messages.add(`edit ${$event.todo.text}`);
+    this.oldText = $event.todo.text;
+    $event.todo.editing = true;
+  }
+  onEditDone($event) {
+    this.oldText = "";
+    $event.todo.editing = false;
+  }
+  onEditCancel($event) {
+    $event.todo.text = this.oldText;
+    this.oldText = "";
+    $event.todo.editing = false;
+  }
 }

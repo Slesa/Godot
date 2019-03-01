@@ -31,7 +31,7 @@ export class TodoInputComponent implements OnInit {
       .subscribe( todo => 
         {
           //this.messageService.add(`Accepted ${todo.text}`)
-          this.entryAdded.emit({event:$event, todo:todo});
+          this.entryAdded.emit({event:$event, todo:todo, editing: false});
           this.newTodo = "";
         });
         

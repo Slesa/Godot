@@ -1,7 +1,7 @@
-<footer class="footer">
-    ::before
+<footer class="footer" *ngIf="leftEntryCount > 0"> <!--  -->
+
     <span class="todo-count">
-        <strong data-bind:="text: pendingCount">0</strong>
+        <strong data-bind:="text: pendingCount">{{leftEntryCount}}</strong>
 <!-- react-text: 24 -->
 <!-- /react-text -->
 <span data-bind:="text: pendingWord">items</span>
@@ -9,8 +9,17 @@
          left
 <!-- /react-text -->
     </span>
-    <Button>All</Button> 
+    <!--div >
+    <ul>
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.All"> &nbsp; All</li>
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Active"> &nbsp; Active</li>
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Completed"> &nbsp; Completed</li>
+    </ul>
+    </div -->
+    <!-- Button>All</Button> 
     <Button>Active</Button>
-    <Button>Completed</Button>
-    <Button>Clear completed</Button>
+    <Button>Completed</Button -->
+    <Button class="clear-completed" *ngIf="doneEntryCount > 0"
+        (click)="onClearCompleted($event)">Clear completed</Button>
+        <!--  -->
 </footer>

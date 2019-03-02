@@ -1,10 +1,11 @@
 <app-todo-input (entryAdded)="onEntryAdded($event)"></app-todo-input>
+
 <section class="main">
   <input autofocus class="toggle-all" type="checkbox" />
   <ul class="todo-list">
      <li *ngFor="let todo of todoEntries" (dblclick)="onEntryEdit({event:$event, todo:todo})" [ngClass]="{'editing': todo.editing === true}" >
        <div class="view">
-         <input class="toggle" type="checkbox" [checked]="todo.done" (change)="todo.done = !todo.done" />
+         <input class="toggle" type="checkbox" [checked]="todo.done" (change)="onToggle({event:$event, todo:todo})" />
          <label
           *ngIf="todo.editing !== true"
           [ngClass]="{'completed': todo.done === true}">{{todo.text}}</label>
@@ -17,3 +18,9 @@
      </li>
   </ul>
 </section>
+
+<app-todo-status 
+  (clearCompleted)="onClearCompleted($event)"
+  [leftEntryCount]="leftEntryCount" 
+  [doneEntryCount]="doneEntryCount" 
+  [viewMode]="viewMode"></app-todo-status>

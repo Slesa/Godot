@@ -47,8 +47,8 @@ export class TodosComponent implements OnInit {
     this.doneEntryCount = this.doneEntries.length;
   }
 
-  onToggle($event) {
-    $event.todo.done = !$event.todo.done;
+  onToggle(todo) {
+    todo.done = todo.done;
     this.buildLists();
   }
   onEntryAdded($event) {
@@ -56,11 +56,11 @@ export class TodosComponent implements OnInit {
     this.todoEntries.push($event.todo);
     this.buildLists();
   }
-  onEntryRemove($event) {
+  onEntryRemove(todo) {
     //this.messages.add(`Reloading entries due to ${$event.event} / ${$event.todo}`);
-    this.todoEntries = this.todoEntries.filter(todo => todo.id !== $event.todo.id);
+    this.todoEntries = this.todoEntries.filter(t => t.id !== todo.id);
     this.buildLists();
-    this.todoService.delTodoEntry($event.todo).subscribe();
+    this.todoService.delTodoEntry(todo).subscribe();
   }
 
   onClearCompleted($event) {
@@ -69,18 +69,18 @@ export class TodosComponent implements OnInit {
     this.buildLists();
   }
 
-  onEntryEdit($event) {
-    this.messages.add(`edit ${$event.todo.text}`);
-    this.oldText = $event.todo.text;
-    $event.todo.editing = true;
+  onEntryEdit(todo) {
+    this.messages.add(`edit ${todo.text}`);
+    this.oldText = todo.text;
+    todo.editing = true;
   }
-  onEditDone($event) {
+  onEditDone(todo) {
     this.oldText = "";
-    $event.todo.editing = false;
+    todo.editing = false;
   }
-  onEditCancel($event) {
-    $event.todo.text = this.oldText;
+  onEditCancel(todo) {
+    todo.text = this.oldText;
     this.oldText = "";
-    $event.todo.editing = false;
+    todo.editing = false;
   }
 }

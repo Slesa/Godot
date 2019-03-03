@@ -3,18 +3,19 @@
 <section class="main">
   <input autofocus class="toggle-all" type="checkbox" />
   <ul class="todo-list">
-     <li *ngFor="let todo of todoEntries" (dblclick)="onEntryEdit({event:$event, todo:todo})" [ngClass]="{'editing': todo.editing === true}" >
+     <li *ngFor="let todo of todoEntries" (dblclick)="onEntryEdit(todo)" [ngClass]="{'editing': todo.editing === true}" >
        <div class="view">
-         <input class="toggle" type="checkbox" [checked]="todo.done" (change)="onToggle({event:$event, todo:todo})" />
+         <input class="toggle" type="checkbox" [checked]="todo.done" (change)="onToggle(todo)" />
          <label
           *ngIf="todo.editing !== true"
           [ngClass]="{'completed': todo.done === true}">{{todo.text}}</label>
-         <button class="destroy" (click)="onEntryRemove({event:$event, todo:todo})"></button>
+         <button class="destroy" (click)="onEntryRemove(todo)"></button>
        </div>
        <input class="edit" autofocus 
-        (keyup.enter)="onEditDone({event:$event, todo:todo})"
-        (keyup.esc)="onEditCancel({event:$event, todo:todo})"
-        *ngIf="todo.editing === true" (blur)="onEditDone({event:$event, todo:todo})" [(ngModel)]="todo.text" />
+        (keyup.enter)="onEditDone(todo)"
+        (keyup.esc)="onEditCancel(todo)"
+        (blur)="onEditCancel(todo)"
+        *ngIf="todo.editing === true" (blur)="onEditDone(todo)" [(ngModel)]="todo.text" />
      </li>
   </ul>
 </section>

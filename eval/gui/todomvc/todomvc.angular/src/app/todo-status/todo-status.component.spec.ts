@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TodoStatusComponent } from './todo-status.component';
 
@@ -8,6 +10,10 @@ describe('TodoStatusComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpClientModule,
+      ],
       declarations: [ TodoStatusComponent ]
     })
     .compileComponents();

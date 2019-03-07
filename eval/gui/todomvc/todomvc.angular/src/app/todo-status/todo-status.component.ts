@@ -9,7 +9,7 @@ import { ViewMode } from '../todos/todos.component';
 })
 export class TodoStatusComponent implements OnInit {
 
-  @Input()  leftEntryCount: number = 0;
+  @Input()  remainingCount: number = 0;
   @Input()  doneEntryCount: number = 0;
   @Input()  viewMode: ViewMode;
 

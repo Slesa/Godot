@@ -14,7 +14,7 @@ export class TodosComponent implements OnInit {
 
   todoEntries: TodoEntry[];
   leftEntries: TodoEntry[];
-  leftEntryCount: number = 0;
+  remainingCount: number = 0;
   doneEntries: TodoEntry[];
   doneEntryCount: number = 0;
   viewMode: ViewMode;
@@ -42,7 +42,7 @@ export class TodosComponent implements OnInit {
 
   private buildLists(): void {
     this.leftEntries = this.todoEntries.filter(t => t.done!==true && t.archieved!==true);
-    this.leftEntryCount = this.leftEntries.length;
+    this.remainingCount = this.leftEntries.length;
     this.doneEntries = this.todoEntries.filter(t => t.done===true && t.archieved!==true);
     this.doneEntryCount = this.doneEntries.length;
   }

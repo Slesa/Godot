@@ -1,21 +1,14 @@
-<footer class="footer" *ngIf="leftEntryCount > 0"> <!--  -->
+<footer class="footer" *ngIf="remainingCount > 0"> <!--  -->
 
-    <span class="todo-count">
-        <strong data-bind:="text: pendingCount">{{leftEntryCount}}</strong>
-<!-- react-text: 24 -->
-<!-- /react-text -->
-<span data-bind:="text: pendingWord">items</span>
-<!-- react-text: 26 -->
-         left
-<!-- /react-text -->
+    <span class="todo-count"><strong>{{remainingCount}}</strong>
+        <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
     </span>
-    <!--div >
-    <ul>
+    <ul class="filters">
         <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.All"> &nbsp; All</li>
         <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Active"> &nbsp; Active</li>
         <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Completed"> &nbsp; Completed</li>
     </ul>
-    </div -->
+
     <!-- Button>All</Button> 
     <Button>Active</Button>
     <Button>Completed</Button -->

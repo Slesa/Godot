@@ -12,6 +12,12 @@ import { TodoStatusComponent } from './todo-status/todo-status.component';
 import { TodoInputComponent } from './todo-input/todo-input.component';
 import { MessagesComponent } from './messages/messages.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
+import localeDeExtra from '@angular/common/locales/extra/de';
+
+registerLocaleData(localeDe, 'de', localeDeExtra);
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="364f6eed82599bc7315643946c3208fa7575c2d0" datatype="html" approved="yes">
+        <source>Messages</source> <target state="translated">Nachrichten</target><context-group purpose="location">
+          <context context-type="sourcefile">app/messages/messages.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Title</note>
+        <note priority="1" from="meaning">Messages</note>
+      </trans-unit>
+      <trans-unit id="06130e41c7caadb0dc105d41ee70e2984e1385b0" datatype="html" approved="yes">
+        <source>clear</source> <target state="translated">Löschen</target><context-group purpose="location">
+          <context context-type="sourcefile">app/messages/messages.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Button clear</note>
+        <note priority="1" from="meaning">Messages</note>
+      </trans-unit>
+      <trans-unit id="577f46261aeafa81dabba17eaa796239d62f2668" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/><x id="INTERPOLATION" equiv-text="{{remainingCount}}"/><x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> <x id="ICU" equiv-text="{remainingCount, plural, =1 {...} other {...}}"/>" </source> <target></target><context-group purpose="location">
+          <context context-type="sourcefile">app/todo-status/todo-status.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Remaining</note>
+        <note priority="1" from="meaning">Status</note>
+      </trans-unit>
+      <trans-unit id="b62f91e8138b9a5c62d2aa8130992ab30eddbd0a" datatype="html" approved="yes">
+        <source>{VAR_PLURAL, plural, =1 {'item left'} other {'items left'} }</source> <target state="translated">{VAR_PLURAL, plural, =1 {'item übrig'} other {'items übrig'} }</target><context-group purpose="location">
+          <context context-type="sourcefile">app/todo-status/todo-status.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ea030ef3486a054ea98f15e6cc684009010d206a" datatype="html" approved="yes">
+        <source>Clear completed</source> <target state="translated">Fertige löschen</target><context-group purpose="location">
+          <context context-type="sourcefile">app/todo-status/todo-status.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Clear completed</note>
+        <note priority="1" from="meaning">Status</note>
+      </trans-unit>
+      <trans-unit id="ca6546c397e9edf478e73537a6b4d340bd932b28" datatype="html" approved="yes">
+        <source>All</source> <target state="translated">Alle</target><context-group purpose="location">
+          <context context-type="sourcefile">app/todo-input/todo-input.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Toggle all</note>
+        <note priority="1" from="meaning">Input</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

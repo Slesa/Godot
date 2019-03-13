@@ -1,18 +1,18 @@
 <footer class="footer" *ngIf="remainingCount > 0"> <!--  -->
 
-    <span class="todo-count"><strong>{{remainingCount}}</strong>
-        <ng-pluralize count="remainingCount" when="{ one: 'item left', other: 'items left' }"></ng-pluralize>
+    <span class="todo-count" i18n="Status|Remaining"><strong>{{remainingCount}}</strong>
+        {remainingCount, plural, =1 {'item left'} other {'items left'} }"
     </span>
-    <ul class="filters">
-        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.All"> &nbsp; All</li>
-        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Active"> &nbsp; Active</li>
-        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Completed"> &nbsp; Completed</li>
-    </ul>
+    <!-- ul class="filters">
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.All" i18n="Status|View all"> &nbsp; All</li>
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Active" i18n="Status|View active"> &nbsp; Active</li>
+        <li><input [(ngModel)]="viewMode" type="radio" name="options" [value]="ViewMode.Completed" i18n="Status|View completed"> &nbsp; Completed</li>
+    </ul -->
 
     <!-- Button>All</Button> 
     <Button>Active</Button>
     <Button>Completed</Button -->
-    <Button class="clear-completed" *ngIf="doneEntryCount > 0"
+    <Button class="clear-completed" *ngIf="doneEntryCount > 0"  i18n="Status|Clear completed"
         (click)="onClearCompleted($event)">Clear completed</Button>
         <!--  -->
 </footer>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="c1601b8c2dfe31000b43369552ffa6a39fe5b9df" datatype="html" approved="yes">
+        <source>My Heroes</source> <target state="translated">Meine Helden</target><context-group purpose="location">
+          <context context-type="sourcefile">app/heroes/heroes.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Title</note>
+        <note priority="1" from="meaning">HeroesList</note>
+      </trans-unit>
+      <trans-unit id="7201f288b83682f400db7565b8e496f76a4644fa" datatype="html" approved="yes">
+        <source>Hero name: <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/> </source> 
+        <target state="translated">Heldenname: <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/></target><context-group purpose="location">
+          <context context-type="sourcefile">app/heroes/heroes.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">Label name</note>
+        <note priority="1" from="meaning">HeroesList</note>
+      </trans-unit>
+      <trans-unit id="041e74d6a9857a63a499e41de7100cefde26528f" datatype="html" approved="yes">
+        <source>add</source> <target state="translated">dazu</target><context-group purpose="location">
+          <context context-type="sourcefile">app/heroes/heroes.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">Button add</note>
+        <note priority="1" from="meaning">HeroesList</note>
+      </trans-unit>
+      <trans-unit id="ef633d90c0977b990cedda525418343a366192dd" datatype="html" approved="yes">
+        <source><x id="INTERPOLATION" equiv-text="{{hero.name | uppercase}}"/> Details</source> <target state="translated">Details</target><context-group purpose="location">
+          <context context-type="sourcefile">app/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Hero title</note>
+        <note priority="1" from="meaning">HeroDetail</note>
+      </trans-unit>
+      <trans-unit id="eb464688250d55f5f6723abbb0883f2daf518354" datatype="html" approved="yes">
+        <source>name: <x id="TAG_INPUT" ctype="x-input" equiv-text="&lt;input/&gt;"/> </source> <target state="translated">name:</target><context-group purpose="location">
+          <context context-type="sourcefile">app/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Name label</note>
+        <note priority="1" from="meaning">HeroDetail</note>
+      </trans-unit>
+      <trans-unit id="ec35e73745f302c00dbe771baaefe9b2b760c115" datatype="html" approved="yes">
+        <source>go back</source> <target state="translated">zurück</target><context-group purpose="location">
+          <context context-type="sourcefile">app/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">Back button</note>
+        <note priority="1" from="meaning">HeroDetail</note>
+      </trans-unit>
+      <trans-unit id="ef557457fc866c7c1145322a9ec0169d79b7fcf0" datatype="html" approved="yes">
+        <source>save</source> <target state="translated">speichern</target><context-group purpose="location">
+          <context context-type="sourcefile">app/hero-detail/hero-detail.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">Save button</note>
+        <note priority="1" from="meaning">HeroDetail</note>
+      </trans-unit>
+      <trans-unit id="364f6eed82599bc7315643946c3208fa7575c2d0" datatype="html" approved="yes">
+        <source>Messages</source> <target state="translated">Nachrichten</target><context-group purpose="location">
+          <context context-type="sourcefile">app/messages/messages.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">Title</note>
+        <note priority="1" from="meaning">Messages</note>
+      </trans-unit>
+      <trans-unit id="06130e41c7caadb0dc105d41ee70e2984e1385b0" datatype="html" approved="yes">
+        <source>clear</source> <target state="translated">löschen</target><context-group purpose="location">
+          <context context-type="sourcefile">app/messages/messages.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Button clear</note>
+        <note priority="1" from="meaning">Messages</note>
+      </trans-unit>
+      <trans-unit id="d85cd4aa8b22d443736bed79dcc1eea73820d3bc" datatype="html" approved="yes">
+        <source>Top heroes</source> <target state="translated">Top-Helden</target><context-group purpose="location">
+          <context context-type="sourcefile">app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <note priority="1" from="description">Title</note>
+        <note priority="1" from="meaning">Dashboard</note>
+      </trans-unit>
+      <trans-unit id="001f50fbed04a20ee223f6b9ccad03d631eac375" datatype="html" approved="yes">
+        <source>Hero Search</source> <target state="translated">Heldensuche</target><context-group purpose="location">
+          <context context-type="sourcefile">app/hero-search/hero-search.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">Title</note>
+        <note priority="1" from="meaning">HeroSearch</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

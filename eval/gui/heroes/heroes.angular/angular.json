@@ -52,6 +52,13 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "de": {
+              "aot": true,
+              "outputPath": "dist/heroes-fr/",
+              "i18nFile": "src/locale/messages.de.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "de"
             }
           }
         },
@@ -63,7 +70,10 @@
           "configurations": {
             "production": {
               "browserTarget": "heroes:build:production"
-            }
+            },
+            "de": {
+              "browserTarget": "heroes:build:de"
+            }            
           }
         },
         "extract-i18n": {

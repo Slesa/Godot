@@ -1,11 +1,11 @@
-<h2>My Heroes</h2>
+<h2 i18n="HeroesList|Title">My Heroes</h2>
 
 <div>
-  <label>Hero name:
+  <label i18n="HeroesList|Label name">Hero name:
     <input #heroName />
   </label>
   <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
+  <button i18n="HeroesList|Button add" (click)="add(heroName.value); heroName.value=''">
     add
   </button>
 </div>

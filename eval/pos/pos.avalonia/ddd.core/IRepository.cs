@@ -4,9 +4,9 @@ namespace ddd.core
 {
     public interface IRepository<T> where T : IAggregateRoot
     {
-        void Save<T>(T entity);
-        T Load<T>(ulong id);
-        IQueryable<T> Query<T>();
+        void Save(T entity);
+        T Load(ulong id);
+        IQueryable<T> Query();
         //IQueryable<T> Query<T>(IDomainQuery<T> whereQuery);
     }
 }

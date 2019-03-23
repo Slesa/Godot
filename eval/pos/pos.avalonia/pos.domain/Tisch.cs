@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using pos.data;
 using EventId = System.UInt64;
 using TischNr = System.UInt64;

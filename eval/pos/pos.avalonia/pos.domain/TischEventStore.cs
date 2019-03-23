@@ -1,41 +1,33 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Serialization;
 
 namespace pos.domain
 {
-    [XmlRoot("Tisch")]
-    [XmlInclude(typeof(ArtikelBestelltEvent))]
-    [XmlInclude(typeof(ArtikelStorniertEvent))]
     public class TischEventStore
     {
-        List<ITischEvent> _events;
+        readonly List<ITischEvent> _events;
 
-        // XML-Serializer braucht parameterlosen ctor
-        public TischEventStore()
+        // Serialisierung, lese kompletten Inhalt
+        public TischEventStore(uint tischnr, uint parteinr, List<ITischEvent> eventList)
         {
-            _events = new List<ITischEvent>();
+            TischNr = tischnr;
+            ParteiNr = parteinr;
+            _events = eventList;
         }
         public TischEventStore(uint tischnr, uint parteinr)
-        : base()
         {
             TischNr = tischnr;
             ParteiNr = parteinr;
             _events = new List<ITischEvent>();
         }
-        [System.Xml.Serialization.XmlIgnore]
+
         public uint TischNr { get; }
-        [System.Xml.Serialization.XmlIgnore]
         public uint ParteiNr { get; }
-        [System.Xml.Serialization.XmlIgnore]
         public IEnumerable<ITischEvent> Events => _events;
 
-        // XML-Serializer braucht eine Liste
-        [XmlArray("TischInhalt")]
-        [XmlArrayItem("TischEintrag")]
-        public List<ITischEvent> Tischinhalt {
-            get { return _events.ToList(); }
-            set { _events = value; }
+        public void AddEvent(ITischEvent tischEvent)
+        {
+            tischEvent.Id = GetNächsteId();
+            _events.Add(tischEvent);
         }
         uint GetNächsteId()
         {

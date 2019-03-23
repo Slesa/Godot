@@ -5,24 +5,22 @@ namespace pos.domain
 {
     public interface ITischEvent : IDomainEvent
     {
-        uint Id { get; }
+        uint Id { get; set; }
     }
 
     public class TischEvent : ITischEvent
     {
-        public TischEvent(uint id)
+        public TischEvent()
         {
-            Id = id;
             OccurredOn = DateTime.Now;
         }
-        public DateTime OccurredOn { get; }
-        public uint Id { get; }
+        public DateTime OccurredOn { get; set; }
+        public uint Id { get; set; }
     }
 
     public class ArtikelBestelltEvent: TischEvent
     {
-        public ArtikelBestelltEvent(uint id, uint anzahl, uint plu, decimal preis)
-        : base(id)
+        public ArtikelBestelltEvent(uint anzahl, uint plu, decimal preis)
         {
             Anzahl = anzahl;
             Plu = plu;
@@ -36,8 +34,13 @@ namespace pos.domain
 
     public class ArtikelStorniertEvent : TischEvent
     {
-        public ArtikelStorniertEvent(uint id, uint anzahl, ArtikelBestelltEvent bestellung)
-        : base(id)
+        public ArtikelStorniertEvent(uint anzahl, uint bestellId, decimal betrag)
+        {
+            Anzahl = anzahl;
+            Bestellung = bestellId;
+            Betrag = betrag;
+        }
+        public ArtikelStorniertEvent(uint anzahl, ArtikelBestelltEvent bestellung)
         {
             Anzahl = anzahl;
             Bestellung = bestellung.Id;

@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.domain.tests", "pos.dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ddd.core", "ddd.core\ddd.core.csproj", "{CE62A514-D486-4A2E-B637-04AF64E96079}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.data", "pos.data\pos.data.csproj", "{263A4CD3-8283-4896-8388-98A2D58ABD66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.data", "pos.data\pos.data.csproj", "{263A4CD3-8283-4896-8388-98A2D58ABD66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.persist.xml", "pos.persist.xml\pos.persist.xml.csproj", "{0ED73227-A741-459C-B733-CBFA93AE0E9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.persist.xml.tests", "pos.persist.xml.tests\pos.persist.xml.tests.csproj", "{5EDB0D26-C399-4D05-AF08-4CD39EED8925}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{263A4CD3-8283-4896-8388-98A2D58ABD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{263A4CD3-8283-4896-8388-98A2D58ABD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{263A4CD3-8283-4896-8388-98A2D58ABD66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED73227-A741-459C-B733-CBFA93AE0E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED73227-A741-459C-B733-CBFA93AE0E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED73227-A741-459C-B733-CBFA93AE0E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED73227-A741-459C-B733-CBFA93AE0E9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace pos.domain
@@ -32,6 +33,34 @@ namespace pos.domain
         uint GetNächsteId()
         {
             return (uint) _events.Count + 1u;
+        }
+
+        public Tisch Replay()
+        {
+            var tischInhalt = new List<ITischEvent>();
+            foreach(var tischEvent in Events)
+                ProcessEvent(tischInhalt, tischEvent);
+            var tisch = new Tisch(TischNr, ParteiNr, tischInhalt);
+            return tisch;
+        }
+
+        public void ProcessEvent(List<ITischEvent> tischInhalt, ITischEvent tischEvent)
+        {
+            foreach(var processor in EventProcessors) 
+            {
+                if( processor.Handled(tischInhalt, tischEvent) ) break;
+            }
+        }
+
+        IEnumerable<IProcessTischEvent> _eventProcessors;
+        IEnumerable<IProcessTischEvent> EventProcessors {
+            get { if (_eventProcessors==null) _eventProcessors = getEventProcessors();
+            return _eventProcessors;}
+        }
+
+        IEnumerable<IProcessTischEvent> getEventProcessors()
+        {
+            yield return new ProcessArtikelBestelltEvent();
         }
     }
 }

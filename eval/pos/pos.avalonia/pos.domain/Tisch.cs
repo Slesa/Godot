@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Linq;
+using System.Collections.Generic;
 using pos.data;
 using EventId = System.UInt64;
 using TischNr = System.UInt64;
@@ -48,26 +51,28 @@ namespace pos.domain
     }
 
 
-
-
     public class Tisch
     {
-
+        public Tisch(TischNr tischnr, ParteiNr parteinr, List<ITischEvent> tischInhalt)
+        {
+            TischNr = tischnr;
+            ParteiNr = parteinr;
+            _events = tischInhalt;
+        }
         public Tisch(TischNr tischnr, ParteiNr parteinr)
         {
             TischNr = tischnr;
             ParteiNr = parteinr;
-            //_events = new List<ITischEvent>();
+            _events = new List<ITischEvent>();
         }
 
         public void BestelleArtikel(BestelleArtikelCommand bestelle)
         {
-            //_events.Add(new ArtikelBestelltEvent(GetNächsteId(), bestelle.Anzahl, bestelle.Artikel.Plu, bestelle.Artikel.Preis));
+            _events.Add(new ArtikelBestelltEvent(bestelle.Anzahl, bestelle.Artikel.Plu, bestelle.Artikel.Preis));
         }
 
         public void StornierePlu(StornierePluCommand storno)
         {
-            /*
             var zuStornieren = storno.Anzahl;
             var bestellungen = _events
                 .Where(x => x.GetType() == typeof(ArtikelBestelltEvent))
@@ -80,13 +85,15 @@ namespace pos.domain
                 var anzahl = bestellung.Anzahl;
                 if (anzahl < zuStornieren)
                 {
-                    _events.Add(new ArtikelStorniertEvent(GetNächsteId(), anzahl, bestellung));
+                    bestellung.Anzahl = 0;
+                    _events.Add(new ArtikelStorniertEvent(anzahl, bestellung));
                     zuStornieren -= anzahl;
                     continue;
                 }
-                _events.Add(new ArtikelStorniertEvent(GetNächsteId(), storno.Anzahl, bestellung));
+                bestellung.Anzahl -= zuStornieren;
+                _events.Add(new ArtikelStorniertEvent(zuStornieren, bestellung));
+                break;
             }
-            */
         }
 
 
@@ -94,8 +101,6 @@ namespace pos.domain
         {
             get
             {
-                return 0M;
-            /* 
                 var bestellt = _events
                     .Where(x => x.GetType()==typeof(ArtikelBestelltEvent))
                     .Cast<ArtikelBestelltEvent>()
@@ -105,16 +110,12 @@ namespace pos.domain
                     .Cast<ArtikelStorniertEvent>()
                     .Sum(x => x.Betrag);
                 return bestellt - storniert;
-            */
             }
         }
         public TischNr TischNr { get; }
         public ParteiNr ParteiNr { get; }
-        public IEnumerable<ITischEvent> Events => null; //_events;
 
-        uint GetNächsteId()
-        {
-            return (uint) 1; //_events.Count + 1u;
-        }
+        List<ITischEvent> _events;
+        public IEnumerable<ITischEvent> Events => _events;
     }
 }

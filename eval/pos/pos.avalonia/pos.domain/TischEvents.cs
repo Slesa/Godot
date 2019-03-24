@@ -27,7 +27,7 @@ namespace pos.domain
             Preis = preis;
         }
 
-        public uint Anzahl { get; }
+        public uint Anzahl { get; set; }
         public uint Plu { get; }
         public decimal Preis { get; set; }
     }

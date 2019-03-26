@@ -105,11 +105,12 @@ namespace pos.domain
                     .Where(x => x.GetType()==typeof(ArtikelBestelltEvent))
                     .Cast<ArtikelBestelltEvent>()
                     .Sum(x => x.Anzahl * x.Preis);
-                var storniert = _events
+                return bestellt;
+                /* var storniert = _events
                     .Where(x => x.GetType() == typeof(ArtikelStorniertEvent))
                     .Cast<ArtikelStorniertEvent>()
                     .Sum(x => x.Betrag);
-                return bestellt - storniert;
+                return bestellt - storniert; */
             }
         }
         public TischNr TischNr { get; }

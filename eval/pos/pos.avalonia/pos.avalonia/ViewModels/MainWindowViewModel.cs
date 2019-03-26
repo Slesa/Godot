@@ -6,6 +6,10 @@ namespace pos.avalonia.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Hello World!";
+        public MainWindowViewModel()
+        {
+            OffenerTischViewModel = new OffenerTischViewModel();
+        }
+        public OffenerTischViewModel OffenerTischViewModel { get; set; }
     }
 }

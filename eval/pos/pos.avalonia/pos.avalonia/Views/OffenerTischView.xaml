@@ -1,0 +1,24 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:pos.avalonia.ViewModels;assembly=pos.avalonia">
+
+  <!--<Design.DataContext>
+    <vm:OffenerTischViewModel/>
+  </Design.DataContext>-->
+  <!--<DataContext>
+    <vm:OffenerTischViewModel/>
+  </DataContext>-->
+
+  <DockPanel>
+    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+      <Button Content="{Binding Anzahl}" Command="{Binding SetzeAnzahlCommand}" />
+      <Button Content="{Binding Plu}" Command="{Binding SetzePluCommand}" />
+    </WrapPanel>
+    <WrapPanel Orientation="Horizontal" DockPanel.Dock="Top">
+      <Button Content="Bestellen" Command="{Binding BestelleCommand}" />
+      <Button Content="Stornieren" Command="{Binding StorniereCommand}" />
+    </WrapPanel>
+    <TextBox Text="{Binding Eingabe}" />
+  </DockPanel>
+
+</UserControl>

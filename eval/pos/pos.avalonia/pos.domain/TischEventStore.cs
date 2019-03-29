@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using pos.domain.Tische;
 
 namespace pos.domain
 {
@@ -8,39 +9,36 @@ namespace pos.domain
         readonly List<ITischEvent> _events;
 
         // Serialisierung, lese kompletten Inhalt
-        public TischEventStore(uint tischnr, uint parteinr, List<ITischEvent> eventList)
+        public TischEventStore(TischNr tischnr, List<ITischEvent> eventList)
         {
             TischNr = tischnr;
-            ParteiNr = parteinr;
             _events = eventList;
         }
-        public TischEventStore(uint tischnr, uint parteinr)
+        public TischEventStore(TischNr tischnr)
         {
             TischNr = tischnr;
-            ParteiNr = parteinr;
             _events = new List<ITischEvent>();
         }
 
-        public uint TischNr { get; }
-        public uint ParteiNr { get; }
+        public TischNr TischNr { get; }
         public IEnumerable<ITischEvent> Events => _events;
 
         public void AddEvent(ITischEvent tischEvent)
         {
-            tischEvent.Id = GetNächsteId();
+            // Todo: in ctor or here? tischEvent.Id = GetNächsteId();
             _events.Add(tischEvent);
         }
-        uint GetNächsteId()
+        /* uint GetNächsteId()
         {
             return (uint) _events.Count + 1u;
-        }
+        } */
 
         public Tisch Replay()
         {
             var tischInhalt = new List<ITischEvent>();
             foreach(var tischEvent in Events)
                 ProcessEvent(tischInhalt, tischEvent);
-            var tisch = new Tisch(TischNr, ParteiNr, tischInhalt);
+            var tisch = Tisch.ErzeugeBestehendenTisch(TischNr, tischInhalt);
             return tisch;
         }
 
@@ -53,14 +51,12 @@ namespace pos.domain
         }
 
         IEnumerable<IProcessTischEvent> _eventProcessors;
-        IEnumerable<IProcessTischEvent> EventProcessors {
-            get { if (_eventProcessors==null) _eventProcessors = getEventProcessors();
-            return _eventProcessors;}
-        }
+        IEnumerable<IProcessTischEvent> EventProcessors => _eventProcessors ?? (_eventProcessors = getEventProcessors());
 
         IEnumerable<IProcessTischEvent> getEventProcessors()
         {
             yield return new ProcessArtikelBestelltEvent();
+            yield return new ProcessArtikelStorniertEvent();
         }
     }
 }

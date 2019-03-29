@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using pos.domain.Tische;
 
 namespace pos.persist.xml.Tisch
 {
     public class TischEintragDto
     {
-        public uint Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime OccurredOn { get; set; }
+        public TischKellner Keller { get; set; }
     }
 
     public class ArtikelBestelltDto : TischEintragDto
@@ -20,7 +22,7 @@ namespace pos.persist.xml.Tisch
     public class ArtikelStorniertDto : TischEintragDto
     {
         public uint Anzahl { get; set; }
-        public uint Bestellung { get; set; }
+        public Guid Bestellung { get; set; }
         public decimal Betrag { get; set; }
     }
 

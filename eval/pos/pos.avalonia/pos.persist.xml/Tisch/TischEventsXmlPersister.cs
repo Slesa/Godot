@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using AutoMapper;
+using pos.domain.Tische;
 using pos.persist.xml.Tisch;
 
 namespace pos.domain
@@ -31,16 +32,16 @@ namespace pos.domain
                     cfg.CreateMap<ArtikelStorniertEvent, ArtikelStorniertEvent>().ReverseMap();
                 });
         }
-        public TischEventStore Laden(uint tischnr, uint parteinr)
+        public TischEventStore Laden(TischNr tischnr)
         {
             TischDto tischDto;
-            using (var fs = new FileStream($"T{tischnr}_{parteinr}.0", FileMode.Open))
+            using (var fs = new FileStream($"T{tischnr.Tisch}_{tischnr.Partei}.0", FileMode.Open))
             {
                 var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TischDto));
                 tischDto = serializer.Deserialize(XmlReader.Create(fs)) as TischDto;
             }
 
-            var es = new TischEventStore(tischnr, parteinr, tischDto.TischInhalt.Select(CreateEventFromDto).ToList());
+            var es = new TischEventStore(tischnr, tischDto.TischInhalt.Select(CreateEventFromDto).ToList());
             return es;
         }
 
@@ -55,7 +56,7 @@ namespace pos.domain
             };
 
             var xmlWriterSettings = new XmlWriterSettings() { Indent = true };
-            using (var fs = new FileStream($"T{eventStore.TischNr}_{eventStore.ParteiNr}.0", FileMode.OpenOrCreate))
+            using (var fs = new FileStream($"T{eventStore.TischNr.Tisch}_{eventStore.TischNr.Partei}.0", FileMode.OpenOrCreate))
             {
                 var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TischDto));
                 serializer.Serialize(XmlWriter.Create(fs, xmlWriterSettings), tischDto);
@@ -72,13 +73,13 @@ namespace pos.domain
         ITischEvent CreateEventFromDto(TischEintragDto evt)
         {
             if (evt is ArtikelBestelltDto bestellt)
-                return new ArtikelBestelltEvent(bestellt.Anzahl, bestellt.Plu, bestellt.Preis)
+                return new ArtikelBestelltEvent(bestellt.Keller, bestellt.Anzahl, bestellt.Plu, bestellt.Preis)
                 {
                     Id = bestellt.Id,
                     OccurredOn = bestellt.OccurredOn
                 };
             if (evt is ArtikelStorniertDto storniert)
-                return new ArtikelStorniertEvent(storniert.Anzahl, storniert.Bestellung, storniert.Betrag)
+                return new ArtikelStorniertEvent(storniert.Keller, storniert.Anzahl, storniert.Bestellung, storniert.Betrag)
                 {
                     Id = storniert.Id,
                     OccurredOn = storniert.OccurredOn

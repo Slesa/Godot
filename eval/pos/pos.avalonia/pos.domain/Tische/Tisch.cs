@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
 using pos.data;
-using EventId = System.UInt64;
-using TischNr = System.UInt64;
-using ParteiNr = System.UInt32;
 
-namespace pos.domain
+namespace pos.domain.Tische
 {
     public class Währung
     {
@@ -26,49 +21,33 @@ namespace pos.domain
         public Währung Währung { get; }
     }
 
-    public class BestelleArtikelCommand 
-    {
-        public BestelleArtikelCommand(uint anzahl, Artikel artikel)
-        {
-            Anzahl = anzahl;
-            Artikel = artikel;
-        }
-
-        public uint Anzahl { get; }
-        public Artikel Artikel { get; }
-    }
-
-    public class StornierePluCommand
-    {
-        public StornierePluCommand(uint anzahl, uint plu)
-        {
-            Anzahl = anzahl;
-            Plu = plu;
-        }
-
-        public uint Anzahl { get; }
-        public uint Plu { get; }
-    }
 
 
     public class Tisch
     {
-        public Tisch(TischNr tischnr, ParteiNr parteinr, List<ITischEvent> tischInhalt)
+        internal Tisch(TischNr tischnr, List<ITischEvent> tischInhalt)
         {
             TischNr = tischnr;
-            ParteiNr = parteinr;
             _events = tischInhalt;
         }
-        public Tisch(TischNr tischnr, ParteiNr parteinr)
+
+        public static Tisch ErzeugeBestehendenTisch(TischNr tischnr, List<ITischEvent> tischInhalt)
+        {
+            return new Tisch(tischnr, tischInhalt);
+        }
+
+        public Tisch(TischNr tischnr)
         {
             TischNr = tischnr;
-            ParteiNr = parteinr;
             _events = new List<ITischEvent>();
         }
 
         public void BestelleArtikel(BestelleArtikelCommand bestelle)
         {
-            _events.Add(new ArtikelBestelltEvent(bestelle.Anzahl, bestelle.Artikel.Plu, bestelle.Artikel.Preis));
+            if(!_events.Any())
+                _events.Add(new TischErzeugtEvent(bestelle.Kellner));
+            AktuelleRunde+=1;
+            _events.Add(new ArtikelBestelltEvent(bestelle.Kellner, bestelle.Anzahl, bestelle.Artikel.Plu, bestelle.Artikel.Preis));
         }
 
         public void StornierePlu(StornierePluCommand storno)
@@ -86,12 +65,12 @@ namespace pos.domain
                 if (anzahl < zuStornieren)
                 {
                     bestellung.Anzahl = 0;
-                    _events.Add(new ArtikelStorniertEvent(anzahl, bestellung));
+                    _events.Add(new ArtikelStorniertEvent(storno.Kellner, anzahl, bestellung));
                     zuStornieren -= anzahl;
                     continue;
                 }
                 bestellung.Anzahl -= zuStornieren;
-                _events.Add(new ArtikelStorniertEvent(zuStornieren, bestellung));
+                _events.Add(new ArtikelStorniertEvent(storno.Kellner, zuStornieren, bestellung));
                 break;
             }
         }
@@ -113,10 +92,10 @@ namespace pos.domain
                 return bestellt - storniert; */
             }
         }
-        public TischNr TischNr { get; }
-        public ParteiNr ParteiNr { get; }
 
-        List<ITischEvent> _events;
+        public TischNr TischNr { get; }
+        public uint AktuelleRunde { get; private set; }
+        readonly List<ITischEvent> _events;
         public IEnumerable<ITischEvent> Events => _events;
     }
 }

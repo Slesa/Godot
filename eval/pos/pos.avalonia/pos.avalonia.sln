@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.avalonia", "pos.avaloni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.domain", "pos.domain\pos.domain.csproj", "{7805BAA6-55A5-4105-AEF0-13E184BFADEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.domain.specs", "pos.specs\pos.domain.specs.csproj", "{4972EF79-05E1-4149-B6ED-4D411CFE40A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.domain.specs", "pos.specs\pos.domain.specs.csproj", "{4972EF79-05E1-4149-B6ED-4D411CFE40A1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.domain.tests", "pos.domain.tests\pos.domain.tests.csproj", "{C89B5946-7E62-467A-9EF5-807CEB5B5EE3}"
 EndProject
@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ddd.core", "ddd.core\ddd.co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.data", "pos.data\pos.data.csproj", "{263A4CD3-8283-4896-8388-98A2D58ABD66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.persist.xml", "pos.persist.xml\pos.persist.xml.csproj", "{0ED73227-A741-459C-B733-CBFA93AE0E9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.persist.xml", "pos.persist.xml\pos.persist.xml.csproj", "{0ED73227-A741-459C-B733-CBFA93AE0E9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pos.persist.xml.tests", "pos.persist.xml.tests\pos.persist.xml.tests.csproj", "{5EDB0D26-C399-4D05-AF08-4CD39EED8925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pos.persist.xml.tests", "pos.persist.xml.tests\pos.persist.xml.tests.csproj", "{5EDB0D26-C399-4D05-AF08-4CD39EED8925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ddd.core.specs", "ddd.core.specs\ddd.core.specs.csproj", "{711E34FD-536F-4F7F-833B-E98DA009A63D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EDB0D26-C399-4D05-AF08-4CD39EED8925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711E34FD-536F-4F7F-833B-E98DA009A63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711E34FD-536F-4F7F-833B-E98DA009A63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711E34FD-536F-4F7F-833B-E98DA009A63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711E34FD-536F-4F7F-833B-E98DA009A63D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

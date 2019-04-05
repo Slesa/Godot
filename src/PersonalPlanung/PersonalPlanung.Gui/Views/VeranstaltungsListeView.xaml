@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="PersonalPlanung.Gui.Views.VeranstaltungsListeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
+             xmlns:regions="http://prismlibrary.com/"
+             xmlns:converter="clr-namespace:PersonalPlanung.Gui.Converter"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             regions:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <converter:DatumZuStringConverter x:Key="DatumZuStringConverter" />
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <ContentControl Margin="10" DockPanel.Dock="Bottom" regions:RegionManager.RegionName="VeranstaltungsEditRegion" />
+
+        <ListView x:Name="_veranstaltungsListe" ItemsSource="{Binding Veranstaltungen}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <regions:InvokeCommandAction Command="{Binding VeranstaltungSelectedCommand}" CommandParameter="{Binding SelectedItem, ElementName=_veranstaltungsListe}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto" />
+                    <GridViewColumn Header="Beginnt" DisplayMemberBinding="{Binding BeginntAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding EndetAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Posten" DisplayMemberBinding="{Binding PostenAnzahl}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

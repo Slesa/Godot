@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="PersonalPlanung.Gui.Views.PersonenListeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
+             xmlns:prism="http://prismlibrary.com/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding LöschePersonRequest}">
+            <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True" />
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
+            <Button Command="{Binding OnAddCommand}" ToolTip="Neue Person hinzufügen" Style="{DynamicResource Style.Buttons.Add}" />
+            <Button Command="{Binding OnEditCommand}" ToolTip="Aktuelle Person bearbeiten" Style="{DynamicResource Style.Buttons.Edit}"  />
+            <Button Command="{Binding LöschePersonCommand}" ToolTip="Aktuelle Person löschen" Style="{DynamicResource Style.Buttons.Remove}" />
+        </StackPanel>
+        
+        <ContentControl Margin="10" DockPanel.Dock="Bottom" prism:RegionManager.RegionName="PersonenEditRegion" />
+
+        <ListView x:Name="_personenListe" ItemsSource="{Binding Personen}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <prism:InvokeCommandAction Command="{Binding PersonSelectedCommand}" CommandParameter="{Binding SelectedItem, ElementName=_personenListe}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto" />
+                    <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Vorname}" Width="Auto" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status.Name}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </DockPanel>
+</UserControl>

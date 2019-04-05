@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung", "PersonalPlanung\PersonalPlanung.csproj", "{C776B681-1F0A-45F6-9E02-0719FE1F1584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung.Core", "PersonalPlanung.Core\PersonalPlanung.Core.csproj", "{59CDCF47-0A6B-46E7-A493-42242E67DC4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung.Excel", "PersonalPlanung.Excel\PersonalPlanung.Excel.csproj", "{61DC0EF1-7A6C-4EE2-B22F-86FD46D95142}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung.Excel.Specs", "PersonalPlanung.Excel.Specs\PersonalPlanung.Excel.Specs.csproj", "{202E6ACE-7060-4438-BCBB-8EA8C04A909A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung.Gui", "PersonalPlanung.Gui\PersonalPlanung.Gui.csproj", "{45259238-1149-4DFE-9813-B9F467C31DE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalPlanung.Theme", "PersonalPlanung.Theme\PersonalPlanung.Theme.csproj", "{37007067-A63E-410E-A9AD-61CEE6463917}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C776B681-1F0A-45F6-9E02-0719FE1F1584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C776B681-1F0A-45F6-9E02-0719FE1F1584}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C776B681-1F0A-45F6-9E02-0719FE1F1584}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C776B681-1F0A-45F6-9E02-0719FE1F1584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CDCF47-0A6B-46E7-A493-42242E67DC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CDCF47-0A6B-46E7-A493-42242E67DC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CDCF47-0A6B-46E7-A493-42242E67DC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CDCF47-0A6B-46E7-A493-42242E67DC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DC0EF1-7A6C-4EE2-B22F-86FD46D95142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DC0EF1-7A6C-4EE2-B22F-86FD46D95142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DC0EF1-7A6C-4EE2-B22F-86FD46D95142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DC0EF1-7A6C-4EE2-B22F-86FD46D95142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202E6ACE-7060-4438-BCBB-8EA8C04A909A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202E6ACE-7060-4438-BCBB-8EA8C04A909A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202E6ACE-7060-4438-BCBB-8EA8C04A909A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202E6ACE-7060-4438-BCBB-8EA8C04A909A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45259238-1149-4DFE-9813-B9F467C31DE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45259238-1149-4DFE-9813-B9F467C31DE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45259238-1149-4DFE-9813-B9F467C31DE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45259238-1149-4DFE-9813-B9F467C31DE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37007067-A63E-410E-A9AD-61CEE6463917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37007067-A63E-410E-A9AD-61CEE6463917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37007067-A63E-410E-A9AD-61CEE6463917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37007067-A63E-410E-A9AD-61CEE6463917}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {143BA3A7-4312-43D2-860A-2D070F89DDAD}
+	EndGlobalSection
+EndGlobal

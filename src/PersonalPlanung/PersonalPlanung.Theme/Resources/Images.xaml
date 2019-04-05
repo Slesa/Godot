@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PersonalPlanung.Theme">
+
+    <!-- Resources -->
+    <BitmapImage x:Key="Images.Personal" UriSource="Images/person.png" />
+    <BitmapImage x:Key="Images.Veranstaltung" UriSource="Images/veranstaltung.png" />
+    <!--<Image x:Key="" Source="" x:Shared="false" />-->
+
+    <!-- List -->
+    <Image x:Key="Images.Add" Source="Images/add.png" x:Shared="false" />
+    <Image x:Key="Images.Edit" Source="Images/edit.png" x:Shared="false" />
+    <Image x:Key="Images.Remove" Source="Images/remove.png" x:Shared="false" />
+
+    <!-- Dialog -->
+    <Image x:Key="Images.Ok" Source="Images/ok.png" x:Shared="false" />
+    <Image x:Key="Images.Cancel" Source="Images/cancel.png" x:Shared="false" />
+    <Image x:Key="Images.Help" Source="Images/help.png" x:Shared="false" />
+    <Image x:Key="Images.Information" Source="Images/information.png" x:Shared="false" />
+    <Image x:Key="Images.Warning" Source="Images/warning.png" x:Shared="false" />
+    <Image x:Key="Images.Error" Source="Images/error.png" x:Shared="false" />
+
+</ResourceDictionary>

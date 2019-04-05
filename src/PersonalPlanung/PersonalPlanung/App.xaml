@@ -1,0 +1,15 @@
+﻿<prism:PrismApplication x:Class="PersonalPlanung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PersonalPlanung"
+             xmlns:prism="http://prismlibrary.com/">
+    <prism:PrismApplication.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PersonalPlanung.Theme;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Rectangle x:Key="Workaround" />
+        </ResourceDictionary>
+
+</prism:PrismApplication.Resources>
+</prism:PrismApplication>

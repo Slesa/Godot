@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/PersonalPlanung.Theme;component/Resources/Colors.xaml" />
+        <ResourceDictionary Source="/PersonalPlanung.Theme;component/Resources/Brushes.xaml" />
+        <ResourceDictionary Source="/PersonalPlanung.Theme;component/Resources/Images.xaml" />
+        <ResourceDictionary Source="/PersonalPlanung.Theme;component/Resources/Styles.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

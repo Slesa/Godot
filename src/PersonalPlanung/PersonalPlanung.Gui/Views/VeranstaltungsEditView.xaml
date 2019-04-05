@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
              xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:model="clr-namespace:PersonalPlanung.Core.Model;assembly=PersonalPlanung.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
@@ -31,6 +32,19 @@
         <!-- Endet -->
         <Label Grid.Column="0" Grid.Row="2" Content="_Endet:" Margin="5"  Target="{Binding ElementName=_endet}" />
         <DatePickerTextBox x:Name="_endet" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding AktuelleVeranstaltung.EndetAm}" />
+
+        <!-- Posten -->
+        <Label Grid.Column="0" Grid.Row="3" Content="_Posten:" Margin="5"  Target="{Binding ElementName=_posten}" />
+        <ListView x:Name="_posten" Grid.Row="3" Margin="5" Grid.Column="1" ItemsSource="{Binding AktuelleVeranstaltung.Posten}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding Rolle.Name}" Width="Auto" />
+                    <GridViewColumn Header="Standort" DisplayMemberBinding="{Binding Standort.Name}" Width="Auto" />
+                    <GridViewColumn Header="Beginn" DisplayMemberBinding="{Binding Beginn}" Width="Auto" />
+                    <GridViewColumn Header="Ende" DisplayMemberBinding="{Binding Ende}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 

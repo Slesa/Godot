@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using PersonalPlanung.Core.Model;
 using Prism.Mvvm;
 
@@ -11,6 +12,7 @@ namespace PersonalPlanung.Gui.ViewModels
             Name = veranstaltung.Name;
             BeginntAm = veranstaltung.BeginntAm;
             EndetAm = veranstaltung.EndetAm;
+            Posten = new ObservableCollection<Posten>(veranstaltung.Posten);
             PostenAnzahl = veranstaltung.Posten.Count;
         }
 
@@ -36,5 +38,6 @@ namespace PersonalPlanung.Gui.ViewModels
         }
 
         public int PostenAnzahl { get; set; }
+        public ObservableCollection<Posten> Posten { get; set; }
     }
 }

@@ -74,6 +74,9 @@ namespace PersonalPlanung.Excel
 
         Rolle LeseRolle(IXLRow row)
         {
+            var datum = row.Cell(colVeranstaltungsDatum).GetValue<string>();
+            if (datum.ToLower() == "datum") return null;
+
             var name = row.Cell(colRollenName).GetValue<string>();
             if (string.IsNullOrWhiteSpace(name)) return null;
             var tmp = name.Split(' ');
@@ -100,6 +103,8 @@ namespace PersonalPlanung.Excel
         }
 
         #endregion
+
+        #region VeranstaltungsImport
 
         public IEnumerable<Veranstaltung> ImportiereVeranstaltungen()
         {
@@ -131,18 +136,21 @@ namespace PersonalPlanung.Excel
             }
         }
 
-        void LesePosten(IXLRow row, Veranstaltung veranstaltung)
+        void LesePosten(IXLRow startRow, Veranstaltung veranstaltung)
         {
-            var vonbis = row.Cell(colVeranstaltungsZeit).GetValue<string>();
-            if (string.IsNullOrWhiteSpace(vonbis)) return;
-            
-            var startZeit = LeseStartZeit(vonbis, veranstaltung.BeginntAm); 
-            var endeZeit = LeseEndeZeit(vonbis, veranstaltung.BeginntAm);
-            if (endeZeit < startZeit) endeZeit = endeZeit.AddDays(1);
-            var rolle = LeseRolle(row);
-            var standort = LeseStandort(row);
-            var posten = new Posten(startZeit, endeZeit, rolle, standort);
-            veranstaltung.Posten.Add(posten);
+            for (var row = startRow; row != null; row = row.RowBelow())
+            {
+                var vonbis = row.Cell(colVeranstaltungsZeit).GetValue<string>();
+                if (string.IsNullOrWhiteSpace(vonbis)) return;
+
+                var startZeit = LeseStartZeit(vonbis, veranstaltung.BeginntAm);
+                var endeZeit = LeseEndeZeit(vonbis, veranstaltung.BeginntAm);
+                if (endeZeit < startZeit) endeZeit = endeZeit.AddDays(1);
+                var rolle = LeseRolle(row);
+                var standort = LeseStandort(row);
+                var posten = new Posten(startZeit, endeZeit, rolle, standort);
+                veranstaltung.Posten.Add(posten);
+            }
         }
 
         Standort LeseStandort(IXLRow row)
@@ -185,6 +193,7 @@ namespace PersonalPlanung.Excel
                 int.TryParse(content[1], out minute);
             }
         }
+        #endregion
 
         DateTime LeseBeginn(string datum)
         {

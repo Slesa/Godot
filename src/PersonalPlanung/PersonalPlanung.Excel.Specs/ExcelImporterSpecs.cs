@@ -68,6 +68,8 @@ namespace PersonalPlanung.Excel.Specs
             _veranstaltungen.First(x => x.Name == "Stadtratssitzung").Posten[0].Ende.ShouldEqual(new DateTime(2019, 4, 16, 21, 0, 0));
         It sollte_ende_der_posten_der_veranstaltung_anpassen_wenn_nach_mitternacht = () =>
             _veranstaltungen.First(x => x.Name == "La Noche").Posten[0].Ende.ShouldEqual(new DateTime(2019, 5, 1, 0, 30, 0));
+        It sollte_mehrere_posten_der_veranstaltung_lesen = () =>
+            _veranstaltungen.First(x => x.Name == "Film Tour").Posten.Count.ShouldEqual(7);
 
         static ExcelImporter _sut;
         static List<Veranstaltung> _veranstaltungen;

@@ -65,8 +65,9 @@
         </Setter>
     </Style>
 
+    <!--BasedOn="{StaticResource Buttons.RoundButton}"-->
     <Style x:Key="Style.Buttons"
-           BasedOn="{StaticResource Buttons.RoundButton}"
+           
            TargetType="{x:Type Button}">
         <Setter Property="Margin" Value="2" />
         <Setter Property="Width" Value="42" />
@@ -87,6 +88,11 @@
            BasedOn="{StaticResource Style.Buttons}"
            TargetType="{x:Type Button}">
         <Setter Property="Content" Value="{StaticResource Images.Remove}" />
+    </Style>
+    <Style x:Key="Style.Buttons.PlaneSchicht"
+           BasedOn="{StaticResource Style.Buttons}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{StaticResource Images.PlaneSchicht}" />
     </Style>
 
 </ResourceDictionary>

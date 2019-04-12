@@ -16,11 +16,11 @@
     </i:Interaction.Triggers>
 
     <DockPanel>
-        <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
-            <Button Command="{Binding OnAddCommand}" ToolTip="Neue Person hinzufügen" Style="{DynamicResource Style.Buttons.Add}" />
-            <Button Command="{Binding OnEditCommand}" ToolTip="Aktuelle Person bearbeiten" Style="{DynamicResource Style.Buttons.Edit}"  />
-            <Button Command="{Binding LöschePersonCommand}" ToolTip="Aktuelle Person löschen" Style="{DynamicResource Style.Buttons.Remove}" />
-        </StackPanel>
+        <!--<StackPanel DockPanel.Dock="Right" Orientation="Vertical">-->
+            <!--<Button Command="{Binding OnAddCommand}" ToolTip="Neue Person hinzufügen" Style="{DynamicResource Style.Buttons.Add}" />-->
+            <!--<Button Command="{Binding OnEditCommand}" ToolTip="Aktuelle Person bearbeiten" Style="{DynamicResource Style.Buttons.Edit}"  />-->
+            <!--<Button Command="{Binding LöschePersonCommand}" ToolTip="Aktuelle Person löschen" Style="{DynamicResource Style.Buttons.Remove}" />-->
+        <!--</StackPanel>-->
         
         <ContentControl Margin="10" DockPanel.Dock="Bottom" prism:RegionManager.RegionName="PersonenEditRegion" />
 

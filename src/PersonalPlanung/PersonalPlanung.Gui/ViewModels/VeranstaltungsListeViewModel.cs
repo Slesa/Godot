@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
 using Prism.Commands;
 using Prism.Events;

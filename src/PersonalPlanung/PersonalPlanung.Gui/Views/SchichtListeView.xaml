@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="PersonalPlanung.Gui.Views.SchichtListeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
+             xmlns:regions="http://prismlibrary.com/"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converter="clr-namespace:PersonalPlanung.Gui.Converter"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             regions:ViewModelLocator.AutoWireViewModel="True">
+
+    <UserControl.Resources>
+        <converter:DatumZuStringConverter x:Key="DatumZuStringConverter" />
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <ContentControl Margin="10" DockPanel.Dock="Bottom" regions:RegionManager.RegionName="SchichtEditRegion" />
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Right">
+            <Button Command="{Binding PlaneSchichtCommand}" ToolTip="Aktuelle Schicht planen" Style="{DynamicResource Style.Buttons.PlaneSchicht}" />
+
+        </StackPanel>
+
+        <ListView x:Name="_schichtListe" ItemsSource="{Binding Schichten}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <regions:InvokeCommandAction Command="{Binding SchichtSelectedCommand}" CommandParameter="{Binding SelectedItem, ElementName=_schichtListe}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Veranstaltung" DisplayMemberBinding="{Binding Veranstaltung.Name}" Width="Auto" />
+                    <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding Posten.Rolle.Name}" Width="Auto" />
+                    <GridViewColumn Header="Beginnt" DisplayMemberBinding="{Binding Posten.Beginn, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding Posten.Ende, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Standort" DisplayMemberBinding="{Binding Posten.Standort.Name}" Width="Auto" />
+                    <GridViewColumn Header="Eingeteilt" DisplayMemberBinding="{Binding Person.Name}" Width="Auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </DockPanel>
+</UserControl>

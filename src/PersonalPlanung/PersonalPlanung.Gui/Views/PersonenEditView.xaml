@@ -6,10 +6,16 @@
              xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
              xmlns:mvvm="http://prismlibrary.com/"
              xmlns:viewModels="clr-namespace:PersonalPlanung.Gui.ViewModels"
+             xmlns:model="clr-namespace:PersonalPlanung.Core.Model;assembly=PersonalPlanung.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Height="200"  
              mvvm:ViewModelLocator.AutoWireViewModel="True">
+    <UserControl.Resources>
+        <DataTemplate DataType="model:Rolle">
+            <TextBox Text="{TemplateBinding Name}" />
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -32,7 +38,15 @@
 
         <!-- Status -->
         <Label Grid.Column="0" Grid.Row="2" Content="_Status:" Margin="5"  Target="{Binding ElementName=_status}" />
-        <TextBox x:Name="_status" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Status.Name}" />
+        <ComboBox x:Name="_status" Grid.Row="2" Grid.Column="1" Margin="5" SelectedValue="{Binding Status}" ItemsSource="{Binding StatusListe}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="model:Status">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/> 
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
 
         <!-- Einsetzbar als -->
         <Label Grid.Column="0" Grid.Row="3" Content="_Einsetzbar:" Margin="5"  Target="{Binding ElementName=_einsetzbar}" />

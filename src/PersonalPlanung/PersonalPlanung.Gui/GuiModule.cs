@@ -16,6 +16,7 @@ namespace PersonalPlanung.Gui
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<SchichtListeView>();
             containerRegistry.RegisterForNavigation<VeranstaltungsListeView>();
             containerRegistry.RegisterForNavigation<VeranstaltungsEditView>();
             containerRegistry.RegisterForNavigation<PersonenListeView>();
@@ -49,9 +50,19 @@ namespace PersonalPlanung.Gui
                 statusRepository.Add(status);
 
             var veranstaltungRepository = containerProvider.Resolve<IVeranstaltungRepository>();
-            var veranstaltungen = importer.ImportiereVeranstaltungen();
+            var veranstaltungen = importer.ImportiereVeranstaltungen().ToList();
             foreach (var veranstaltung in veranstaltungen)
                 veranstaltungRepository.Add(veranstaltung);
+
+            var schichtRepository = containerProvider.Resolve<ISchichtRepository>();
+            foreach (var veranstaltung in veranstaltungen)
+            {
+                foreach (var posten in veranstaltung.Posten)
+                {
+                    var schicht = new Schicht {Posten = posten, Veranstaltung = veranstaltung};
+                    schichtRepository.Add(schicht);
+                }
+            }
 
             var eventAggregator = containerProvider.Resolve<IEventAggregator>();
             eventAggregator.GetEvent<ReloadDataEvent>().Publish();

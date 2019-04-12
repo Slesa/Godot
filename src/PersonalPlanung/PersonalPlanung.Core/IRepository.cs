@@ -6,6 +6,8 @@ namespace PersonalPlanung.Core
     {
         bool Contains(T element);
         void Add(T element);
+        void Change(T element);
+        void Remove(T element);
         IEnumerable<T> GetAll();
     }
 }

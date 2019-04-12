@@ -103,5 +103,11 @@
   <ItemGroup>
     <Resource Include="Resources\Images\veranstaltung.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\schicht.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\execute.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
@@ -12,12 +13,17 @@ namespace PersonalPlanung.Gui.ViewModels
         readonly IPersonRepository _personRepository;
         readonly IRolleRepository _rolleRepository;
 
-        public PersonenEditViewModel(IPersonRepository personRepository, IRolleRepository rolleRepository)
+        public PersonenEditViewModel(IPersonRepository personRepository, IRolleRepository rolleRepository, IStatusRepository statusRepository)
         {
             _personRepository = personRepository;
             _rolleRepository = rolleRepository;
             EinsetzbarAls = new List<RollenViewModel>(rolleRepository.GetAll().Select(x => new RollenViewModel(x, false)));
+
+            StatusListe= new ObservableCollection<Status>(new List<Status>(){new Status("")});
+            StatusListe.AddRange(statusRepository.GetAll());
         }
+
+        public ObservableCollection<Status> StatusListe { get; }
 
         string _name;
         public string Name
@@ -77,7 +83,7 @@ namespace PersonalPlanung.Gui.ViewModels
         {
             AktuellePerson.Name = Name;
             AktuellePerson.Vorname = Vorname;
-            AktuellePerson.Status = AktuellePerson.Status;
+            AktuellePerson.Status = Status;
             AktuellePerson.EinsetzbarAls = new List<Rolle>(EinsetzbarAls.Where(x => x.Aktiv).Select(r => new Rolle(r.Name)));
             if(IsNew)
                 _personRepository.Add(AktuellePerson.ToPerson());

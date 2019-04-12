@@ -10,6 +10,7 @@ namespace PersonalPlanung.Gui.ViewModels
             Name = rolle.Name;
             Aktiv = aktiv;
         }
+
         string _name;
         public string Name
         {

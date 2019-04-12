@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows;
 using CommonServiceLocator;
 using PersonalPlanung.Core;
+using PersonalPlanung.Core.Business;
 using PersonalPlanung.Core.Repositories;
 using PersonalPlanung.Gui;
 using Prism.Ioc;
@@ -19,6 +20,10 @@ namespace PersonalPlanung
             containerRegistry.RegisterSingleton<IRolleRepository, RolleRepository>();
             containerRegistry.RegisterSingleton<IPersonRepository, PersonRepository>();
             containerRegistry.RegisterSingleton<IVeranstaltungRepository, VeranstaltungRepository>();
+            containerRegistry.RegisterSingleton<ISchichtRepository, SchichtRepository>();
+            containerRegistry.RegisterSingleton<IZeitBuchungRepository, ZeitBuchungRepository>();
+            containerRegistry.RegisterSingleton<IchFindePersonal, PersonalFinder>();
+            containerRegistry.RegisterSingleton<SchichtPlaner, SchichtPlaner>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)

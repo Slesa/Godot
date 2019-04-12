@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
 using Prism.Commands;
 using Prism.Events;
@@ -22,11 +23,11 @@ namespace PersonalPlanung.Gui.ViewModels
             eventAggregator.GetEvent<ReloadDataEvent>().Subscribe(ReloadPersonen);
 
             Personen = new ObservableCollection<PersonenViewModel>(_personRepository.GetAll().Select(x => new PersonenViewModel(x)));
-            OnAddCommand = new DelegateCommand(OnAdd);
+            //OnAddCommand = new DelegateCommand(OnAdd);
 
             PersonSelectedCommand = new DelegateCommand<PersonenViewModel>(PersonSelected);
-            LöschePersonRequest = new InteractionRequest<IConfirmation>();
-            LöschePersonCommand = new DelegateCommand(RaiseConfirmation);
+            //LöschePersonRequest = new InteractionRequest<IConfirmation>();
+            //LöschePersonCommand = new DelegateCommand(RaiseConfirmation);
         }
 
         void ReloadPersonen()
@@ -47,25 +48,25 @@ namespace PersonalPlanung.Gui.ViewModels
         }
         #endregion
 
-        #region Add
-        public ICommand OnAddCommand { get; set; }
-        void OnAdd()
-        {
-        }
-        #endregion Add
+        //#region Add
+        //public ICommand OnAddCommand { get; set; }
+        //void OnAdd()
+        //{
+        //}
+        //#endregion Add
 
-        public InteractionRequest<IConfirmation> LöschePersonRequest { get; set; }
-        public DelegateCommand LöschePersonCommand { get; set; }
+        //public InteractionRequest<IConfirmation> LöschePersonRequest { get; set; }
+        //public DelegateCommand LöschePersonCommand { get; set; }
 
-        void RaiseConfirmation()
-        {
-            LöschePersonRequest.Raise(new Confirmation
-                {
-                    Title = "Person löschen",
-                    Content = "Confirmation Message"
-                },
-                r => Personen.RemoveAt(0));
-        }
+        //void RaiseConfirmation()
+        //{
+        //    LöschePersonRequest.Raise(new Confirmation
+        //        {
+        //            Title = "Person löschen",
+        //            Content = "Confirmation Message"
+        //        },
+        //        r => Personen.RemoveAt(0));
+        //}
 
     }
 }

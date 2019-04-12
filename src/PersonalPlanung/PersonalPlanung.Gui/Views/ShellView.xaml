@@ -20,6 +20,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <collections:ArrayList x:Key="MenuItems">
+                <viewModels:ShellMenuItem Name="Schichten" Icon="{StaticResource Images.Schicht}" ViewName="SchichtListeView" />
                 <viewModels:ShellMenuItem Name="Veranstaltungen" Icon="{StaticResource Images.Veranstaltung}" ViewName="VeranstaltungsListeView" />
                 <viewModels:ShellMenuItem Name="Personal" Icon="{StaticResource Images.Personal}" ViewName="PersonenListeView" />
             </collections:ArrayList>
@@ -41,7 +42,7 @@
 
     <DockPanel>
 
-        <ListView x:Name="_menu"  ItemsSource="{StaticResource MenuItems}" ItemTemplate="{StaticResource MenuItemTemplate}">
+        <ListView x:Name="_menu"  ItemsSource="{StaticResource MenuItems}" ItemTemplate="{StaticResource MenuItemTemplate}" HorizontalContentAlignment="Center">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <regions:InvokeCommandAction Command="{Binding MenuItemCommand}" CommandParameter="{Binding SelectedItem, ElementName=_menu}" />

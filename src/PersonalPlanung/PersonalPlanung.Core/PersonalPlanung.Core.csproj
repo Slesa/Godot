@@ -36,10 +36,15 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\IchFindePersonal.cs" />
+    <Compile Include="Business\PersonalFinder.cs" />
+    <Compile Include="Business\SchichtPlaner.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Posten.cs" />
+    <Compile Include="Model\Schicht.cs" />
     <Compile Include="Model\Standort.cs" />
+    <Compile Include="Model\ZeitBuchung.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Rolle.cs" />
     <Compile Include="Model\Status.cs" />

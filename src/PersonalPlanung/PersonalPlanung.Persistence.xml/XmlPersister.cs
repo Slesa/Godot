@@ -1,37 +1,44 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 
 namespace PersonalPlanung.Persistence.xml
 {
-    /*
-    abstract class XmlPersister<T, D> where T: class
+    public abstract class XmlPersister<T, TD> where TD: class
     {
         readonly string _listName;
-        readonly IMapDtoToElement<T, D> _dtoMapper;
 
-        protected XmlPersister(string listName, IMapDtoToElement<T, D> dtoMapper)
+        protected XmlPersister(string listName)
         {
             _listName = listName;
-            _dtoMapper = dtoMapper;
         }
 
         public void Save(IEnumerable<T> listData)
         {
-
+            var fileName = FileNamer.GetFilenameFor(_listName);
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TD));
+            using (var fs = new FileStream(fileName, FileMode.Create))
+            {
+                var writer = new XmlTextWriter(fs, Encoding.UTF8) { Formatting = Formatting.Indented };
+                var instance = GetDto(listData);
+                serializer.Serialize(writer, instance);
+            }
         }
 
-        public IEnumerable<T> Load<I>() where I: IMapDtoToElement<T, D>
+        public abstract object GetDto(IEnumerable<T> listData);
+        public abstract IEnumerable<T> GetOrigin(TD dto);
+
+        public IEnumerable<T> Load()
         {
             var fileName = FileNamer.GetFilenameFor(_listName);
             using (var fs = new FileStream(fileName, FileMode.Open))
             {
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
-                var instance = serializer.Deserialize(XmlReader.Create(fs)) as T;
-                yield return _dtoMapper.MapElement(instance);
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TD));
+                var instance = serializer.Deserialize(XmlReader.Create(fs)) as TD;
+                return GetOrigin(instance);
             }
 
         }
     }
-    */
 }

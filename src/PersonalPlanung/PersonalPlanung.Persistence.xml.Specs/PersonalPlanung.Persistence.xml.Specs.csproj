@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StammdatenSpecs.cs" />
+    <Compile Include="RollenSpecs.cs" />
+    <Compile Include="StandorteSpecs.cs" />
+    <Compile Include="XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -56,6 +58,10 @@
     <ProjectReference Include="..\PersonalPlanung.Core\PersonalPlanung.Core.csproj">
       <Project>{59cdcf47-0a6b-46e7-a493-42242e67dc4a}</Project>
       <Name>PersonalPlanung.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersonalPlanung.Persistence.xml\PersonalPlanung.Persistence.xml.csproj">
+      <Project>{856578ed-8976-42a9-91dd-b27babb2fa13}</Project>
+      <Name>PersonalPlanung.Persistence.xml</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

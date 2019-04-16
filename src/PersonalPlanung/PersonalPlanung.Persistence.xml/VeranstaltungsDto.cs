@@ -21,6 +21,6 @@ namespace PersonalPlanung.Persistence.xml
     {
         [XmlArray("Veranstaltung")]
         [XmlArrayItem("EineVeranstaltung")]
-        public List<VeranstaltungenDto> Veranstaltungen { get; set; }
+        public List<Veranstaltung> Veranstaltungen { get; set; }
     }
 }

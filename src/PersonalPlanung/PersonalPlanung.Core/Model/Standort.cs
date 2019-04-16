@@ -2,7 +2,7 @@
 
 namespace PersonalPlanung.Core.Model
 {
-    [DebuggerDisplay("{Name}")]
+    [DebuggerDisplay("{" + nameof(Name) + "}")]
     public class Standort : ValueObject<Standort>
     {
         public Standort(string name)

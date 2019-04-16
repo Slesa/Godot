@@ -39,8 +39,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileNamer.cs" />
-    <Compile Include="IMapDtoToElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RollenDto.cs" />
+    <Compile Include="RollenXmlPersister.cs" />
+    <Compile Include="StandorteDto.cs" />
+    <Compile Include="StandorteXmlPersister.cs" />
     <Compile Include="VeranstaltungsDto.cs" />
     <Compile Include="VeranstaltungsXmlPersister.cs" />
     <Compile Include="XmlPersister.cs" />

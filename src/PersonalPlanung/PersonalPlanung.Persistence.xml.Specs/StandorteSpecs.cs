@@ -11,16 +11,13 @@ using PersonalPlanung.Core.Model;
 
 namespace PersonalPlanung.Persistence.xml.Specs
 {
-    internal class Wenn_Standorte_gespeichert_werden
+    [Subject(typeof(StandorteXmlPersister))]
+    internal class Wenn_Standorte_gespeichert_werden : StandorteSpecsBase
     {
         Establish context = () =>
         {
             _filename = FileNamer.GetFilenameFor(StandorteXmlPersister.ListName);
-            _standorte = new List<Standort>
-            {
-                new Standort("Schranke"),
-                new Standort("Haupteingang"),
-            };
+            _standorte = CreateStandorte().ToList();
             _sut = new StandorteXmlPersister();
         };
 
@@ -46,15 +43,12 @@ namespace PersonalPlanung.Persistence.xml.Specs
     }
 
 
-    internal class Wenn_Standorte_geladen_werden
+    [Subject(typeof(StandorteXmlPersister))]
+    internal class Wenn_Standorte_geladen_werden : StandorteSpecsBase
     {
         Establish context = () =>
         {
-            _standorte = new List<Standort>
-            {
-                new Standort("Schranke"),
-                new Standort("Haupteingang"),
-            };
+            _standorte = CreateStandorte().ToList();
             _filename = FileNamer.GetFilenameFor(StandorteXmlPersister.ListName);
             new XmlFile().WithLine("<?xml version='1.0' encoding='utf-8'?>")
                 .WithLine("<PersonalPlanung xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>")
@@ -86,5 +80,14 @@ namespace PersonalPlanung.Persistence.xml.Specs
         static string _filename;
         static StandorteXmlPersister _sut;
         static IEnumerable<Standort> _elements;
+    }
+
+    internal class StandorteSpecsBase
+    {
+        protected static IEnumerable<Standort> CreateStandorte()
+        {
+            yield return new Standort("Schranke");
+            yield return new Standort("Haupteingang");
+        }
     }
 }

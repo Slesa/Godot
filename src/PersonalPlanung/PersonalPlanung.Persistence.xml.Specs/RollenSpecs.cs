@@ -10,16 +10,13 @@ using PersonalPlanung.Core.Model;
 
 namespace PersonalPlanung.Persistence.xml.Specs
 {
-    internal class Wenn_Rollen_gespeichert_werden
+    [Subject(typeof(RollenXmlPersister))]
+    internal class Wenn_Rollen_gespeichert_werden : RollenSpecsBase
     {
         Establish context = () =>
         {
             _filename = FileNamer.GetFilenameFor(RollenXmlPersister.ListName);
-            _rollen = new List<Rolle>
-            {
-                new Rolle("Captain"),
-                new Rolle("Lieutnant"),
-            };
+            _rollen = CreateRollen().ToList();
             _sut = new RollenXmlPersister();
         };
 
@@ -45,15 +42,12 @@ namespace PersonalPlanung.Persistence.xml.Specs
     }
 
 
-    internal class Wenn_Rollen_geladen_werden
+    [Subject(typeof(RollenXmlPersister))]
+    internal class Wenn_Rollen_geladen_werden : RollenSpecsBase
     {
         Establish context = () =>
         {
-            _rollen = new List<Rolle>
-            {
-                new Rolle("Captain"),
-                new Rolle("Lieutnant"),
-            };
+            _rollen = CreateRollen().ToList();
             _filename = FileNamer.GetFilenameFor(RollenXmlPersister.ListName);
             new XmlFile().WithLine("<?xml version='1.0' encoding='utf-8'?>")
                 .WithLine("<PersonalPlanung xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>")
@@ -87,4 +81,12 @@ namespace PersonalPlanung.Persistence.xml.Specs
         static IEnumerable<Rolle> _elements;
     }
 
+    internal class RollenSpecsBase
+    {
+        protected static IEnumerable<Rolle> CreateRollen()
+        {
+            yield return new Rolle("Captain");
+            yield return new Rolle("Lieutnant");
+        }
+    }
 }

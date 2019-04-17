@@ -1,10 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using PersonalPlanung.Core.Model;
 
 namespace PersonalPlanung.Persistence.xml
 {
-    public class RollenXmlPersister : XmlPersister<Rolle, RollenDto>
+    [Serializable]
+    public class RolleDto
+    {
+        [XmlAttribute]
+        public string Name { get; set; }
+    }
+
+    [Serializable]
+    [XmlRoot(ElementName = "PersonalPlanung")]
+    [XmlInclude(typeof(RolleDto))]
+    public class RollenDto
+    {
+        [XmlArray("Rollen")]
+        [XmlArrayItem("Rolle")]
+        public List<RolleDto> Rollen { get; set; }
+    }
+
+    public class RollenXmlPersister : XmlPersister<Rolle, RollenDto>, IRollePersister
     {
         public const string ListName = "Rollen";
 

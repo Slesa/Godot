@@ -5,7 +5,6 @@ using NSubstitute;
 using PersonalPlanung.Core.Business;
 using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
-using Status = PersonalPlanung.Core.Model.Status;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
@@ -145,14 +144,14 @@ namespace PersonalPlanung.Core.Specs.Business
             new Person
             {
                 Name = "Manni",
-                Status = Status.Kollege,
+                Beruf = Beruf.Kollege,
                 EinsetzbarAls = new List<Rolle> {HausmeisterRolle}
             };
         protected static Person Student =>
             new Person
             {
                 Name = "Harald",
-                Status = Status.Student,
+                Beruf = Beruf.Student,
                 MinutenSatz = 12.5M/60M,
                 EinsetzbarAls = new List<Rolle> {HausmeisterRolle}
             };

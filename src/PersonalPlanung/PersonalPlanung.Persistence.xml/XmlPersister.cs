@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -31,14 +32,22 @@ namespace PersonalPlanung.Persistence.xml
 
         public IEnumerable<T> Load()
         {
-            var fileName = FileNamer.GetFilenameFor(_listName);
-            using (var fs = new FileStream(fileName, FileMode.Open))
+            try
             {
-                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TD));
-                var instance = serializer.Deserialize(XmlReader.Create(fs)) as TD;
-                return GetOrigin(instance);
+                var fileName = FileNamer.GetFilenameFor(_listName);
+                if (File.Exists(fileName))
+                    using (var fs = new FileStream(fileName, FileMode.Open))
+                    {
+                        var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TD));
+                        var instance = serializer.Deserialize(XmlReader.Create(fs)) as TD;
+                        return GetOrigin(instance);
+                    }
             }
-
+            catch
+            {
+                // ignored
+            }
+            return Enumerable.Empty<T>();
         }
     }
 }

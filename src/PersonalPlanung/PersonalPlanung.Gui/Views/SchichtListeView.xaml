@@ -32,10 +32,10 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Veranstaltung" DisplayMemberBinding="{Binding Veranstaltung.Name}" Width="Auto" />
-                    <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding Posten.Rolle.Name}" Width="Auto" />
-                    <GridViewColumn Header="Beginnt" DisplayMemberBinding="{Binding Posten.Beginn, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
-                    <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding Posten.Ende, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
-                    <GridViewColumn Header="Standort" DisplayMemberBinding="{Binding Posten.Standort.Name}" Width="Auto" />
+                    <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding Aufgabe.Rolle.Name}" Width="Auto" />
+                    <GridViewColumn Header="Beginnt" DisplayMemberBinding="{Binding Aufgabe.Beginn, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding Aufgabe.Ende, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Standort" DisplayMemberBinding="{Binding Aufgabe.Standort.Name}" Width="Auto" />
                     <GridViewColumn Header="Eingeteilt" DisplayMemberBinding="{Binding Person.Name}" Width="Auto" />
                 </GridView>
             </ListView.View>

@@ -12,8 +12,8 @@ namespace PersonalPlanung.Gui.ViewModels
             Name = veranstaltung.Name;
             BeginntAm = veranstaltung.BeginntAm;
             EndetAm = veranstaltung.EndetAm;
-            Posten = new ObservableCollection<Posten>(veranstaltung.Posten);
-            PostenAnzahl = veranstaltung.Posten.Count;
+            Aufgaben = new ObservableCollection<Aufgabe>(veranstaltung.Aufgaben);
+            AufgabenAnzahl = veranstaltung.Aufgaben.Count;
         }
 
         string _name;
@@ -37,7 +37,7 @@ namespace PersonalPlanung.Gui.ViewModels
             set => SetProperty(ref _beginntAm, value);
         }
 
-        public int PostenAnzahl { get; set; }
-        public ObservableCollection<Posten> Posten { get; set; }
+        public int AufgabenAnzahl { get; set; }
+        public ObservableCollection<Aufgabe> Aufgaben { get; set; }
     }
 }

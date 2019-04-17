@@ -39,7 +39,7 @@ namespace PersonalPlanung.Core.Business
                     if (freizeit < 11 * 60) continue; // 11h zwischen Schichten
                 }
 
-                if (person.Status == Status.Student)
+                if (person.Beruf == Beruf.Student)
                 {
                     var verdient = _zeitBuchungen.GetAll()
                         .Where(x => x.Person == person)

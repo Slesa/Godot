@@ -11,7 +11,7 @@ namespace PersonalPlanung.Core.Model
         [IgnoreValue]
         public decimal MinutenSatz { get; set; }
         [IgnoreValue]
-        public Status Status { get; set; }
+        public Beruf Beruf { get; set; }
         [IgnoreValue]
         public List<Rolle> EinsetzbarAls { get; set; } = new List<Rolle>();
     }

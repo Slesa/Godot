@@ -1,8 +1,10 @@
-﻿using PersonalPlanung.Core.Model;
+﻿using System.Diagnostics;
+using PersonalPlanung.Core.Model;
 using Prism.Mvvm;
 
 namespace PersonalPlanung.Gui.ViewModels
 {
+    [DebuggerDisplay("{Name} : {Aktiv}")]
     public class RollenViewModel: BindableBase
     {
         public RollenViewModel(Rolle rolle, bool aktiv)

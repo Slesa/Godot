@@ -20,6 +20,7 @@
     <Image x:Key="Images.Ok" Source="Images/ok.png" x:Shared="false" />
     <Image x:Key="Images.Cancel" Source="Images/cancel.png" x:Shared="false" />
     <Image x:Key="Images.Help" Source="Images/help.png" x:Shared="false" />
+    <Image x:Key="Images.Save" Source="Images/save.png" x:Shared="false" />
     <Image x:Key="Images.Information" Source="Images/information.png" x:Shared="false" />
     <Image x:Key="Images.Warning" Source="Images/warning.png" x:Shared="false" />
     <Image x:Key="Images.Error" Source="Images/error.png" x:Shared="false" />

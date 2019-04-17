@@ -4,9 +4,9 @@ using System.Diagnostics;
 namespace PersonalPlanung.Core.Model
 {
     [DebuggerDisplay("{Beginn} - {Ende}: {Rolle} ({Standort})")]
-    public class Posten
+    public class Aufgabe
     {
-        public Posten(DateTime startZeit, DateTime endeZeit, Rolle rolle, Standort standort)
+        public Aufgabe(DateTime startZeit, DateTime endeZeit, Rolle rolle, Standort standort)
         {
             Beginn = startZeit;
             Ende = endeZeit;

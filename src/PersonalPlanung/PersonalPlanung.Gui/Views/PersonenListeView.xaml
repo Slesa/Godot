@@ -16,15 +16,15 @@
     </i:Interaction.Triggers>
 
     <DockPanel>
-        <!--<StackPanel DockPanel.Dock="Right" Orientation="Vertical">-->
+        <StackPanel DockPanel.Dock="Right" Orientation="Vertical">
             <!--<Button Command="{Binding OnAddCommand}" ToolTip="Neue Person hinzufügen" Style="{DynamicResource Style.Buttons.Add}" />-->
             <!--<Button Command="{Binding OnEditCommand}" ToolTip="Aktuelle Person bearbeiten" Style="{DynamicResource Style.Buttons.Edit}"  />-->
-            <!--<Button Command="{Binding LöschePersonCommand}" ToolTip="Aktuelle Person löschen" Style="{DynamicResource Style.Buttons.Remove}" />-->
-        <!--</StackPanel>-->
+            <Button Command="{Binding LöschePersonCommand}" ToolTip="Aktuelle Person löschen" Style="{DynamicResource Style.Buttons.Remove}" />
+        </StackPanel>
         
         <ContentControl Margin="10" DockPanel.Dock="Bottom" prism:RegionManager.RegionName="PersonenEditRegion" />
 
-        <ListView x:Name="_personenListe" ItemsSource="{Binding Personen}">
+        <ListView x:Name="_personenListe" ItemsSource="{Binding Personen}" SelectedItem="{Binding AktuellePerson, Mode=TwoWay}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <prism:InvokeCommandAction Command="{Binding PersonSelectedCommand}" CommandParameter="{Binding SelectedItem, ElementName=_personenListe}" />
@@ -34,7 +34,7 @@
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto" />
                     <GridViewColumn Header="Vorname" DisplayMemberBinding="{Binding Vorname}" Width="Auto" />
-                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Status.Name}" Width="Auto" />
+                    <GridViewColumn Header="Beruf" DisplayMemberBinding="{Binding Beruf.Name}" Width="Auto" />
                 </GridView>
             </ListView.View>
         </ListView>

@@ -27,7 +27,12 @@ namespace PersonalPlanung.Gui
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(ShellView));
+            regionManager.RegisterViewWithRegion("PersonenEditRegion", typeof(PersonenEditView));
             //regionManager.RegisterViewWithRegion("ContentRegion", typeof(PersonenListeView));
+
+            var rolleRepository = containerProvider.Resolve<IRolleRepository>();
+            if (rolleRepository.GetAll().Any()) return;
+
 
             const string ExcelFile = @"d:\work\github\Godot\src\PersonalPlanung\April.xlsx";
             var importer = new ExcelImporter(ExcelFile);
@@ -41,13 +46,12 @@ namespace PersonalPlanung.Gui
                 personRepository.Add(person);
             }
 
-            var rolleRepository = containerProvider.Resolve<IRolleRepository>();
             foreach (var rolle in rollen.Distinct())
                 rolleRepository.Add(rolle);
 
-            var statusRepository = containerProvider.Resolve<IStatusRepository>();
-            foreach(var status in GetPossibleStatus())
-                statusRepository.Add(status);
+            var berufRepository = containerProvider.Resolve<IBerufRepository>();
+            foreach(var beruf in GetPossibleBeruf())
+                berufRepository.Add(beruf);
 
             var veranstaltungRepository = containerProvider.Resolve<IVeranstaltungRepository>();
             var veranstaltungen = importer.ImportiereVeranstaltungen().ToList();
@@ -57,9 +61,9 @@ namespace PersonalPlanung.Gui
             var schichtRepository = containerProvider.Resolve<ISchichtRepository>();
             foreach (var veranstaltung in veranstaltungen)
             {
-                foreach (var posten in veranstaltung.Posten)
+                foreach (var aufgabe in veranstaltung.Aufgaben)
                 {
-                    var schicht = new Schicht {Posten = posten, Veranstaltung = veranstaltung};
+                    var schicht = new Schicht {Aufgabe = aufgabe, Veranstaltung = veranstaltung};
                     schichtRepository.Add(schicht);
                 }
             }
@@ -68,12 +72,12 @@ namespace PersonalPlanung.Gui
             eventAggregator.GetEvent<ReloadDataEvent>().Publish();
         }
 
-        IEnumerable<Status> GetPossibleStatus()
+        IEnumerable<Beruf> GetPossibleBeruf()
         {
-            yield return Status.Rentner;
-            yield return Status.Student;
-            yield return Status.Kollege;
-            yield return Status.Dienstleister;
+            yield return Beruf.Rentner;
+            yield return Beruf.Student;
+            yield return Beruf.Kollege;
+            yield return Beruf.Dienstleister;
         }
     }
 }

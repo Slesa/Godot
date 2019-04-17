@@ -12,7 +12,7 @@ namespace PersonalPlanung.Gui.ViewModels
         {
             Name = person.Name;
             Vorname = person.Vorname;
-            Status = person.Status;
+            Beruf = person.Beruf;
             EinsetzbarAls = new List<Rolle>(person.EinsetzbarAls);
         }
 
@@ -35,18 +35,18 @@ namespace PersonalPlanung.Gui.ViewModels
             set => SetProperty(ref _vorname, value);
         }
 
-        Status _status;
-        public Status Status
+        Beruf _beruf;
+        public Beruf Beruf
         {
-            get => _status;
-            set => SetProperty(ref _status, value);
+            get => _beruf;
+            set => SetProperty(ref _beruf, value);
         }
 
         public List<Rolle> EinsetzbarAls { get; set; }
 
         public Person ToPerson()
         {
-            return new Person {Name = Name, Vorname = Vorname, Status = Status, EinsetzbarAls = EinsetzbarAls.ToList()};
+            return new Person {Name = Name, Vorname = Vorname, Beruf = Beruf, EinsetzbarAls = EinsetzbarAls.ToList()};
         }
     }
 }

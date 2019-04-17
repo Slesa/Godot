@@ -36,11 +36,11 @@
         <Label Grid.Column="0" Grid.Row="1" Content="_Vorname:" Margin="5"  Target="{Binding ElementName=_vorname}" />
         <TextBox x:Name="_vorname" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Vorname}" />
 
-        <!-- Status -->
-        <Label Grid.Column="0" Grid.Row="2" Content="_Status:" Margin="5"  Target="{Binding ElementName=_status}" />
-        <ComboBox x:Name="_status" Grid.Row="2" Grid.Column="1" Margin="5" SelectedValue="{Binding Status}" ItemsSource="{Binding StatusListe}">
+        <!-- Beruf -->
+        <Label Grid.Column="0" Grid.Row="2" Content="_Beruf:" Margin="5"  Target="{Binding ElementName=_beruf}" />
+        <ComboBox x:Name="_beruf" Grid.Row="2" Grid.Column="1" Margin="5" SelectedValue="{Binding Beruf}" ItemsSource="{Binding BerufListe}">
             <ComboBox.ItemTemplate>
-                <DataTemplate DataType="model:Status">
+                <DataTemplate DataType="model:Beruf">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Name}"/> 
                     </StackPanel>

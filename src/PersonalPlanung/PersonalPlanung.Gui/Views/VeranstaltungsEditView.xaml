@@ -33,9 +33,9 @@
         <Label Grid.Column="0" Grid.Row="2" Content="_Endet:" Margin="5"  Target="{Binding ElementName=_endet}" />
         <DatePickerTextBox x:Name="_endet" Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding AktuelleVeranstaltung.EndetAm}" />
 
-        <!-- Posten -->
-        <Label Grid.Column="0" Grid.Row="3" Content="_Posten:" Margin="5"  Target="{Binding ElementName=_posten}" />
-        <ListView x:Name="_posten" Grid.Row="3" Margin="5" Grid.Column="1" ItemsSource="{Binding AktuelleVeranstaltung.Posten}">
+        <!-- Aufgaben -->
+        <Label Grid.Column="0" Grid.Row="3" Content="_Aufgabe:" Margin="5"  Target="{Binding ElementName=_aufgaben}" />
+        <ListView x:Name="_aufgaben" Grid.Row="3" Margin="5" Grid.Column="1" ItemsSource="{Binding AktuelleVeranstaltung.Aufgaben}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding Rolle.Name}" Width="Auto" />

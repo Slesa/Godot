@@ -24,16 +24,16 @@ namespace PersonalPlanung.Core.Business
             var aktuelleSchicht = schichten.Where(x => x.Veranstaltung.BeginntAm.Month == monat.Month);
             foreach (var schicht in aktuelleSchicht)
             {
-                var person = _personalFinder.FindeFür(schicht.Posten.Beginn, schicht.Posten.Ende, schicht.Posten.Rolle);
+                var person = _personalFinder.FindeFür(schicht.Aufgabe.Beginn, schicht.Aufgabe.Ende, schicht.Aufgabe.Rolle);
                 if (person == null) continue;
 
                 schicht.Person = person;
                 var zeitbuchung = new ZeitBuchung
                 {
                     Person = person,
-                    Rolle = schicht.Posten.Rolle,
-                    Wann = schicht.Posten.Beginn,
-                    Minuten = (uint) (schicht.Posten.Ende - schicht.Posten.Beginn).TotalMinutes,
+                    Rolle = schicht.Aufgabe.Rolle,
+                    Wann = schicht.Aufgabe.Beginn,
+                    Minuten = (uint) (schicht.Aufgabe.Ende - schicht.Aufgabe.Beginn).TotalMinutes,
                     MinutenSatz = person.MinutenSatz
                 };
                 _zeitBuchungen.Add(zeitbuchung);

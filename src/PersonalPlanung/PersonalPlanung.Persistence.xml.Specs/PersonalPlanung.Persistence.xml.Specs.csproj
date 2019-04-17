@@ -46,10 +46,12 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BerufeSpecs.cs" />
     <Compile Include="PersonenSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RollenSpecs.cs" />
     <Compile Include="StandorteSpecs.cs" />
+    <Compile Include="VeranstaltungenSpecs.cs" />
     <Compile Include="XmlFile.cs" />
   </ItemGroup>
   <ItemGroup>

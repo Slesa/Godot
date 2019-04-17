@@ -30,7 +30,7 @@
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto" />
                     <GridViewColumn Header="Beginnt" DisplayMemberBinding="{Binding BeginntAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
                     <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding EndetAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
-                    <GridViewColumn Header="Posten" DisplayMemberBinding="{Binding PostenAnzahl}" Width="Auto" />
+                    <GridViewColumn Header="Aufgabe" DisplayMemberBinding="{Binding AufgabenAnzahl}" Width="Auto" />
                 </GridView>
             </ListView.View>
         </ListView>

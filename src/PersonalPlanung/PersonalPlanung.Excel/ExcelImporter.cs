@@ -57,7 +57,7 @@ namespace PersonalPlanung.Excel
                 var schlussDienst = LeseSchlussdienst(row);
                 if (schlussDienst != null)
                     person.EinsetzbarAls.Add(schlussDienst);
-                if(person.Name=="USEC") person.Status = Status.Dienstleister;
+                if(person.Name=="USEC") person.Beruf = Beruf.Dienstleister;
                 var rolle = LeseRolle(row);
                 if( rolle!=null )
                     person.EinsetzbarAls.Add(rolle);
@@ -130,13 +130,13 @@ namespace PersonalPlanung.Excel
 
                 var beginntAm = LeseBeginn(datum);
                 var veranstaltung = new Veranstaltung(name, beginntAm, beginntAm);
-                LesePosten(row, veranstaltung);
+                LeseAufgaben(row, veranstaltung);
                 letzteVeranstaltung = veranstaltung;
                 yield return veranstaltung;
             }
         }
 
-        void LesePosten(IXLRow startRow, Veranstaltung veranstaltung)
+        void LeseAufgaben(IXLRow startRow, Veranstaltung veranstaltung)
         {
             for (var row = startRow; row != null; row = row.RowBelow())
             {
@@ -148,8 +148,8 @@ namespace PersonalPlanung.Excel
                 if (endeZeit < startZeit) endeZeit = endeZeit.AddDays(1);
                 var rolle = LeseRolle(row);
                 var standort = LeseStandort(row);
-                var posten = new Posten(startZeit, endeZeit, rolle, standort);
-                veranstaltung.Posten.Add(posten);
+                var aufgabe = new Aufgabe(startZeit, endeZeit, rolle, standort);
+                veranstaltung.Aufgaben.Add(aufgabe);
             }
         }
 

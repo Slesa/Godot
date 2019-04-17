@@ -126,6 +126,10 @@
       <Project>{45259238-1149-4dfe-9813-b9f467c31de4}</Project>
       <Name>PersonalPlanung.Gui</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PersonalPlanung.Persistence.xml\PersonalPlanung.Persistence.xml.csproj">
+      <Project>{856578ed-8976-42a9-91dd-b27babb2fa13}</Project>
+      <Name>PersonalPlanung.Persistence.xml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersonalPlanung.Theme\PersonalPlanung.Theme.csproj">
       <Project>{37007067-a63e-410e-a9ad-61cee6463917}</Project>
       <Name>PersonalPlanung.Theme</Name>

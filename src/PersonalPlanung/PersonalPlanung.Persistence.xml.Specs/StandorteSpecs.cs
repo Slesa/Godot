@@ -1,16 +1,29 @@
-﻿// ReSharper disable InconsistentNaming
-// ReSharper disable UnusedMember.Local
-// ReSharper disable UnusedMember.Global
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using Machine.Specifications;
 using PersonalPlanung.Core.Model;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedMember.Local
+// ReSharper disable UnusedMember.Global
 
 namespace PersonalPlanung.Persistence.xml.Specs
 {
+    [Subject(typeof(StandorteXmlPersister))]
+    internal class Wenn_Standorte_datei_nicht_vorhanden : StandorteSpecsBase
+    {
+        Establish context = () => _sut = new StandorteXmlPersister();
+
+        Because of = () => _standorte = _sut.Load().ToList();
+
+        It should_give_empty_list = () => _standorte.ShouldBeEmpty();
+
+        static List<Standort> _standorte;
+        static StandorteXmlPersister _sut;
+    }
+
+
     [Subject(typeof(StandorteXmlPersister))]
     internal class Wenn_Standorte_gespeichert_werden : StandorteSpecsBase
     {
@@ -21,15 +34,9 @@ namespace PersonalPlanung.Persistence.xml.Specs
             _sut = new StandorteXmlPersister();
         };
 
-        Cleanup teardown = () =>
-        {
-            File.Delete(_filename);
-        };
+        Cleanup teardown = () => File.Delete(_filename);
 
-        Because of = () =>
-        {
-            _sut.Save(_standorte);
-        };
+        Because of = () => _sut.Save(_standorte);
 
         It should_save_namen = () =>
         {
@@ -61,15 +68,9 @@ namespace PersonalPlanung.Persistence.xml.Specs
             _sut = new StandorteXmlPersister();
         };
 
-        Cleanup teardown = () =>
-        {
-            File.Delete(_filename);
-        };
+        Cleanup teardown = () => File.Delete(_filename);
 
-        Because of = () =>
-        {
-            _elements = _sut.Load();
-        };
+        Because of = () => _elements = _sut.Load();
 
         It should_load_namen = () =>
         {

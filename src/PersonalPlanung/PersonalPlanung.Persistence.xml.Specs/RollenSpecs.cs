@@ -10,6 +10,20 @@ using PersonalPlanung.Core.Model;
 
 namespace PersonalPlanung.Persistence.xml.Specs
 {
+    [Subject(typeof(PersonenXmlPersister))]
+    internal class Wenn_Rollen_datei_nicht_vorhanden : RollenSpecsBase
+    {
+        Establish context = () => _sut = new RollenXmlPersister();
+
+        Because of = () => _rollen = _sut.Load().ToList();
+
+        It should_give_empty_list = () => _rollen.ShouldBeEmpty();
+
+        static List<Rolle> _rollen;
+        static RollenXmlPersister _sut;
+    }
+
+
     [Subject(typeof(RollenXmlPersister))]
     internal class Wenn_Rollen_gespeichert_werden : RollenSpecsBase
     {
@@ -20,15 +34,9 @@ namespace PersonalPlanung.Persistence.xml.Specs
             _sut = new RollenXmlPersister();
         };
 
-        Cleanup teardown = () =>
-        {
-            File.Delete(_filename);
-        };
+        Cleanup teardown = () => File.Delete(_filename);
 
-        Because of = () =>
-        {
-            _sut.Save(_rollen);
-        };
+        Because of = () => _sut.Save(_rollen);
 
         It should_save_namen = () =>
         {
@@ -60,15 +68,9 @@ namespace PersonalPlanung.Persistence.xml.Specs
             _sut = new RollenXmlPersister();
         };
 
-        Cleanup teardown = () =>
-        {
-            File.Delete(_filename);
-        };
+        Cleanup teardown = () => File.Delete(_filename);
 
-        Because of = () =>
-        {
-            _elements = _sut.Load();
-        };
+        Because of = () => _elements = _sut.Load();
 
         It should_load_namen = () =>
         {

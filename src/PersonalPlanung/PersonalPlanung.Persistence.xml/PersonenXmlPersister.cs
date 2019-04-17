@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Serialization;
 using PersonalPlanung.Core.Model;
@@ -11,13 +12,26 @@ namespace PersonalPlanung.Persistence.xml
     {
         [XmlAttribute]
         public string Name { get; set; }
+
         [XmlAttribute]
         public string Vorname { get; set; }
-        [XmlAttribute]
+
+        [XmlIgnore]
         public decimal MinutenSatz { get; set; }
+
+        [XmlAttribute("MinutenSatz")]
+        public string MinutenSatzString
+        {
+            get => MinutenSatz.ToString(CultureInfo.InvariantCulture);
+            set => MinutenSatz = decimal.Parse(value, CultureInfo.InvariantCulture);
+        }
+
         [XmlAttribute]
-        public string StatusName { get; set; }
-//        public List<Rolle> EinsetzbarAls { get; set; } = new List<Rolle>();
+        public string BerufName { get; set; }
+
+        [XmlArray]
+        [XmlArrayItem("Rolle")]
+        public List<RolleDto> EinsetzbarAls { get; set; }
     }
 
     [Serializable]
@@ -30,7 +44,7 @@ namespace PersonalPlanung.Persistence.xml
         public List<PersonDto> Personen { get; set; }
     }
 
-    public class PersonenXmlPersister : XmlPersister<Person, PersonenDto>
+    public class PersonenXmlPersister : XmlPersister<Person, PersonenDto>, IPersonPersister
     {
         public const string ListName = "Personen";
 
@@ -46,7 +60,8 @@ namespace PersonalPlanung.Persistence.xml
                     Name = x.Name,
                     Vorname = x.Vorname,
                     MinutenSatz = x.MinutenSatz,
-                    StatusName = x.Status.Name,
+                    BerufName = x.Beruf?.Name,
+                    EinsetzbarAls = x.EinsetzbarAls.Select(y => new RolleDto { Name = y.Name }).ToList()
                 }).ToList() };
         }
 
@@ -57,7 +72,8 @@ namespace PersonalPlanung.Persistence.xml
                     Name = x.Name,
                     Vorname = x.Vorname,
                     MinutenSatz = x.MinutenSatz,
-                    Status = new Status(x.StatusName),
+                    Beruf = new Beruf(x.BerufName),
+                    EinsetzbarAls = x.EinsetzbarAls.Select(y => new Rolle(y.Name)).ToList()
                 });
         }
     }

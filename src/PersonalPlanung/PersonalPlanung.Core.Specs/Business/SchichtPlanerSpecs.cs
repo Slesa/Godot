@@ -6,7 +6,6 @@ using NSubstitute;
 using PersonalPlanung.Core.Business;
 using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
-using Status = PersonalPlanung.Core.Model.Status;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedMember.Global
@@ -95,21 +94,21 @@ namespace PersonalPlanung.Core.Specs.Business
             new Person
             {
                 Name = "Manni",
-                Status = Status.Kollege,
+                Beruf = Beruf.Kollege,
                 EinsetzbarAls = new List<Rolle> { HausmeisterRolle }
             };
         protected static Person Ordner =>
             new Person
             {
                 Name = "Karl",
-                Status = Status.Kollege,
+                Beruf = Beruf.Kollege,
                 EinsetzbarAls = new List<Rolle> { OrdnerRolle }
             };
         protected static Person Student =>
             new Person
             {
                 Name = "Harald",
-                Status = Status.Student,
+                Beruf = Beruf.Student,
                 MinutenSatz = 12.5M / 60M,
                 EinsetzbarAls = new List<Rolle> { HausmeisterRolle }
             };
@@ -118,12 +117,12 @@ namespace PersonalPlanung.Core.Specs.Business
         {
             var datum = new DateTime(2019, 12, 12);
             var veranstaltung = new Veranstaltung("Messe", datum, datum);
-            var posten = new Posten(
+            var aufgabe = new Aufgabe(
                 new DateTime(datum.Year, datum.Month, datum.Day, 8, 30, 0),
                 new DateTime(datum.Year, datum.Month, datum.Day, 12, 30, 0),
                 OrdnerRolle,
                 new Standort("Haupteingang"));
-            return new List<Schicht> { new Schicht { Posten = posten, Veranstaltung = veranstaltung } };
+            return new List<Schicht> { new Schicht { Aufgabe = aufgabe, Veranstaltung = veranstaltung } };
         }
         protected static ISchichtRepository Schichten;
         protected static IchFindePersonal PersonenFinder;

@@ -90,6 +90,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\add.png" />
     <Resource Include="Resources\Images\cancel.png" />
+    <Resource Include="Resources\Images\doimport.png" />
     <Resource Include="Resources\Images\edit.png" />
     <Resource Include="Resources\Images\error.png" />
     <Resource Include="Resources\Images\help.png" />
@@ -111,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\import.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

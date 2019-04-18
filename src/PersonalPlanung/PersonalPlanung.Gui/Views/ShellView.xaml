@@ -23,6 +23,7 @@
                 <viewModels:ShellMenuItem Name="Schichten" Icon="{StaticResource Images.Schicht}" ViewName="SchichtListeView" />
                 <viewModels:ShellMenuItem Name="Veranstaltungen" Icon="{StaticResource Images.Veranstaltung}" ViewName="VeranstaltungsListeView" />
                 <viewModels:ShellMenuItem Name="Personal" Icon="{StaticResource Images.Personal}" ViewName="PersonenListeView" />
+                <viewModels:ShellMenuItem Name="Import" Icon="{StaticResource Images.Import}" ViewName="ImportView" />
             </collections:ArrayList>
 
             <DataTemplate x:Key="MenuItemTemplate" DataType="viewModels:ShellMenuItem">

@@ -6,6 +6,8 @@
     <BitmapImage x:Key="Images.Personal" UriSource="Images/person.png" />
     <BitmapImage x:Key="Images.Veranstaltung" UriSource="Images/veranstaltung.png" />
     <BitmapImage x:Key="Images.Schicht" UriSource="Images/schicht.png" />
+    <BitmapImage x:Key="Images.Import" UriSource="Images/import.png" />
+    <BitmapImage x:Key="Images.DoImport" UriSource="Images/doimport.png" />
     <!--<Image x:Key="" Source="" x:Shared="false" />-->
 
     <!-- List -->

@@ -74,6 +74,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\ImportViewModel.cs" />
     <Compile Include="ViewModels\PersonenEditViewModel.cs" />
     <Compile Include="ViewModels\PersonenListeViewModel.cs" />
     <Compile Include="ViewModels\PersonenViewModel.cs" />
@@ -84,6 +85,9 @@
     <Compile Include="ViewModels\VeranstaltungsEditViewModel.cs" />
     <Compile Include="ViewModels\VeranstaltungsListeViewModel.cs" />
     <Compile Include="ViewModels\VeranstaltungsViewModel.cs" />
+    <Compile Include="Views\ImportView.xaml.cs">
+      <DependentUpon>ImportView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PersonenEditView.xaml.cs">
       <DependentUpon>PersonenEditView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +131,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\ImportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PersonenEditView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>

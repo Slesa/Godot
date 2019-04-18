@@ -21,13 +21,14 @@ namespace PersonalPlanung.Gui
             containerRegistry.RegisterForNavigation<VeranstaltungsEditView>();
             containerRegistry.RegisterForNavigation<PersonenListeView>();
             containerRegistry.RegisterForNavigation<PersonenEditView>();
+            containerRegistry.RegisterForNavigation<ImportView>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(ShellView));
-            regionManager.RegisterViewWithRegion("PersonenEditRegion", typeof(PersonenEditView));
+            //regionManager.RegisterViewWithRegion("PersonenEditRegion", typeof(PersonenEditView));
             //regionManager.RegisterViewWithRegion("ContentRegion", typeof(PersonenListeView));
 
             var rolleRepository = containerProvider.Resolve<IRolleRepository>();

@@ -93,6 +93,10 @@
            TargetType="{x:Type Button}">
         <Setter Property="Content" Value="{StaticResource Images.Save}" />
     </Style>
+    <Style x:Key="Style.Buttons.DoImport"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content" Value="{StaticResource Images.DoImport}" />
+    </Style>
     <Style x:Key="Style.Buttons.PlaneSchicht"
            BasedOn="{StaticResource Style.Buttons}"
            TargetType="{x:Type Button}">

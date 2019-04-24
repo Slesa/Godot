@@ -1,13 +1,14 @@
 import React from 'react';
 import VoteList from './VoteList';
 import VoteComposer from './VoteComposer';
+import {fetchJson} from '../backend/Backend';
 
 export default class VoteController extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      allVotes: props.allVotes
+      allVotes: []
     };
 
     this.setCurrentVote = this.setCurrentVote.bind(this);
@@ -17,6 +18,13 @@ export default class VoteController extends React.Component {
     this.addVote = this.addVote.bind(this);
   }
 
+  componentDidMount() {
+    fetchJson('/api/votes').then(allVotes => {
+      this.setState({
+        allVotes
+      });
+    });
+  }
   addVote(vote) {
     const { allVotes } = this.state;
     this.setState({allVotes: [...allVotes, vote]});
@@ -81,6 +89,3 @@ export default class VoteController extends React.Component {
     );
   }
 }
-VoteController.propTypes = {
-  allVotes: React.PropTypes.array.isRequired
-};

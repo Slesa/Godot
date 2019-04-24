@@ -1,7 +1,7 @@
 import React from 'react';
 import VoteList from './VoteList';
 import VoteComposer from './VoteComposer';
-import {fetchJson} from '../backend/Backend';
+import {fetchJson, sendJson} from '../backend/Backend';
 
 export default class VoteController extends React.Component {
   constructor(props) {
@@ -25,9 +25,13 @@ export default class VoteController extends React.Component {
       });
     });
   }
-  addVote(vote) {
-    const { allVotes } = this.state;
-    this.setState({allVotes: [...allVotes, vote]});
+  addVote(newVote) {
+    sendJson('post', '/api/votes', newVote)
+    .then(receivedVote => {
+      this.setState({
+        allVotes: [...this.state.allVotes, receivedVote]
+      });
+    });
   }
 
   setCurrentVote(vote) {

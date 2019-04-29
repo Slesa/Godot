@@ -22,6 +22,7 @@ namespace PersonalPlanung.Core.Business
         {
             var schichten = _schichtRepository.GetAll();
             var aktuelleSchicht = schichten.Where(x => x.Veranstaltung.BeginntAm.Month == monat.Month);
+            _zeitBuchungen.BeginChanges();
             foreach (var schicht in aktuelleSchicht)
             {
                 var person = _personalFinder.FindeFür(schicht.Aufgabe.Beginn, schicht.Aufgabe.Ende, schicht.Aufgabe.Rolle);
@@ -38,6 +39,8 @@ namespace PersonalPlanung.Core.Business
                 };
                 _zeitBuchungen.Add(zeitbuchung);
             }
+            _schichtRepository.Save();
+            _zeitBuchungen.Save();
         }
     }
 }

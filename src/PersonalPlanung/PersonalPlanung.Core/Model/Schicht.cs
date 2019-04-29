@@ -1,6 +1,9 @@
-﻿namespace PersonalPlanung.Core.Model
+﻿using System.Diagnostics;
+
+namespace PersonalPlanung.Core.Model
 {
-    public class Schicht
+    [DebuggerDisplay("{Aufgabe.Rolle.Name}: {Person.Name}, {Veranstaltung.Name}")]
+    public class Schicht : ValueObject<Schicht>
     {
         public Aufgabe Aufgabe { get; set; }
         public Person Person { get; set; }

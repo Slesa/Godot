@@ -25,9 +25,11 @@ namespace PersonalPlanung
             containerRegistry.RegisterSingleton<IPersonRepository, PersonenXmlRepository>();
             containerRegistry.RegisterSingleton<IVeranstaltungPersister, VeranstaltungenXmlPersister>();
             containerRegistry.RegisterSingleton<IVeranstaltungRepository, VeranstaltungenXmlRepository>();
+            containerRegistry.RegisterSingleton<ISchichtRepository, SchichtenXmlRepository>();
+            containerRegistry.RegisterSingleton<IZeitBuchungRepository, ZeitBuchungsXmlRepository>();
 
-            containerRegistry.RegisterSingleton<ISchichtRepository, SchichtRepository>();
-            containerRegistry.RegisterSingleton<IZeitBuchungRepository, ZeitBuchungRepository>();
+            //containerRegistry.RegisterSingleton<ISchichtRepository, SchichtRepository>();
+            //containerRegistry.RegisterSingleton<IZeitBuchungRepository, ZeitBuchungRepository>();
             containerRegistry.RegisterSingleton<IchFindePersonal, PersonalFinder>();
             containerRegistry.RegisterSingleton<SchichtPlaner, SchichtPlaner>();
         }

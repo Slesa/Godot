@@ -13,7 +13,7 @@ namespace PersonalPlanung.Persistence.xml
     public interface IRollePersister : IPersist<Rolle> { }
     public interface IPersonPersister : IPersist<Person> { }
     public interface IVeranstaltungPersister : IPersist<Veranstaltung> { }
-    //public interface ISchichtRepository : IPersist<Schicht> { }
-    //public interface IZeitBuchungRepository : IPersist<ZeitBuchung> { }
+    public interface ISchichtPersister : IPersist<Schicht> { }
+    public interface IZeitBuchungsPersister : IPersist<ZeitBuchung> { }
 
 }

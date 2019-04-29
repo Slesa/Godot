@@ -30,7 +30,7 @@ namespace PersonalPlanung.Gui
             regionManager.RegisterViewWithRegion("ContentRegion", typeof(ShellView));
             //regionManager.RegisterViewWithRegion("PersonenEditRegion", typeof(PersonenEditView));
             //regionManager.RegisterViewWithRegion("ContentRegion", typeof(PersonenListeView));
-
+            /*
             var rolleRepository = containerProvider.Resolve<IRolleRepository>();
             if (rolleRepository.GetAll().Any()) return;
 
@@ -71,6 +71,7 @@ namespace PersonalPlanung.Gui
 
             var eventAggregator = containerProvider.Resolve<IEventAggregator>();
             eventAggregator.GetEvent<ReloadDataEvent>().Publish();
+            */
         }
 
         IEnumerable<Beruf> GetPossibleBeruf()

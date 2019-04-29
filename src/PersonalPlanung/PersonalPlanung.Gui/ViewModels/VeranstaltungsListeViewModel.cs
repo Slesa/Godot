@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Threading;
 using PersonalPlanung.Core.Repositories;
 using Prism.Commands;
 using Prism.Events;
@@ -12,9 +13,11 @@ namespace PersonalPlanung.Gui.ViewModels
         readonly IEventAggregator _eventAggregator;
         readonly IRegionManager _regionManager;
         readonly IVeranstaltungRepository _veranstaltungRepository;
+        readonly Dispatcher _dispatcher;
 
         public VeranstaltungsListeViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IVeranstaltungRepository veranstaltungRepository)
         {
+            _dispatcher = Dispatcher.CurrentDispatcher;
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _veranstaltungRepository = veranstaltungRepository;
@@ -27,8 +30,11 @@ namespace PersonalPlanung.Gui.ViewModels
 
         void ReloadVeranstaltungen()
         {
-            Veranstaltungen.Clear();
-            Veranstaltungen.AddRange(_veranstaltungRepository.GetAll().Select(x => new VeranstaltungsViewModel(x)));
+            _dispatcher.Invoke(() =>
+            {
+                Veranstaltungen.Clear();
+                Veranstaltungen.AddRange(_veranstaltungRepository.GetAll().Select(x => new VeranstaltungsViewModel(x)));
+            });
         }
 
         public ObservableCollection<VeranstaltungsViewModel> Veranstaltungen { get; set; }

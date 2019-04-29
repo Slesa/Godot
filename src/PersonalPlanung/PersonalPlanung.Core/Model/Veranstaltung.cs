@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace PersonalPlanung.Core.Model
 {
     [DebuggerDisplay("{Name} {BeginntAm} - {EndetAm}")]
-    public class Veranstaltung
+    public class Veranstaltung : ValueObject<Veranstaltung>
     {
         public Veranstaltung(string name, DateTime beginntAm, DateTime endetAm)
         {
@@ -19,6 +19,7 @@ namespace PersonalPlanung.Core.Model
         public DateTime EndetAm { get; set; }
 
         List<Aufgabe> _aufgaben;
+        [IgnoreValue]
         public List<Aufgabe> Aufgaben
         {
             get => _aufgaben ?? (_aufgaben = new List<Aufgabe>());

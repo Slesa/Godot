@@ -3,7 +3,7 @@
 namespace PersonalPlanung.Core.Model
 {
     [DebuggerDisplay("{" + nameof(Name) + "}")]
-    public class Beruf : ValueObject<Person>
+    public class Beruf : ValueObject<Beruf>
     {
         public static Beruf Rentner = new Beruf("Rentner");
         public static Beruf Student = new Beruf("Student");

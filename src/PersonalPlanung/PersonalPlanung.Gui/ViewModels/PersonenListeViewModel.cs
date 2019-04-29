@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Threading;
 using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
 using Prism.Commands;
@@ -16,9 +17,11 @@ namespace PersonalPlanung.Gui.ViewModels
         readonly IEventAggregator _eventAggregator;
         readonly IRegionManager _regionManager;
         readonly IPersonRepository _personRepository;
+        readonly Dispatcher _dispatcher;
 
         public PersonenListeViewModel(IEventAggregator eventAggregator, IRegionManager regionManager, IPersonRepository personRepository)
         {
+            _dispatcher = Dispatcher.CurrentDispatcher;
             _eventAggregator = eventAggregator;
             _regionManager = regionManager;
             _personRepository = personRepository;
@@ -34,8 +37,12 @@ namespace PersonalPlanung.Gui.ViewModels
 
         void ReloadPersonen()
         {
-            Personen.Clear();
-            Personen.AddRange(_personRepository.GetAll().Select(x => new PersonenViewModel(x)));
+            _dispatcher.Invoke(() =>
+            {
+                AktuellePerson = null;
+                Personen.Clear();
+                Personen.AddRange(_personRepository.GetAll().Select(x => new PersonenViewModel(x)));
+            });
         }
 
         public ObservableCollection<PersonenViewModel> Personen { get; private set; }

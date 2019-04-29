@@ -6,6 +6,15 @@ namespace PersonalPlanung.Core.Repositories
     public interface IRolleRepository : IRepository<Rolle> {}
     public interface IPersonRepository : IRepository<Person> {}
     public interface IVeranstaltungRepository : IRepository<Veranstaltung> {}
-    public interface ISchichtRepository : IRepository<Schicht> {}
-    public interface IZeitBuchungRepository : IRepository<ZeitBuchung> {}
+
+    public interface ISchichtRepository : IRepository<Schicht>
+    {
+        void Save();
+    }
+
+    public interface IZeitBuchungRepository : IRepository<ZeitBuchung>
+    {
+        void BeginChanges();
+        void Save();
+    }
 }

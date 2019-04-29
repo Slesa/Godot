@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Threading;
 using PersonalPlanung.Core.Model;
 using PersonalPlanung.Core.Repositories;
@@ -31,6 +32,7 @@ namespace PersonalPlanung.Gui.ViewModels
     public class ImportViewModel
     {
         readonly IEventAggregator _eventAggregator;
+        readonly IBerufRepository _berufRepository;
         readonly IPersonRepository _personRepository;
         readonly IRolleRepository _rolleRepository;
         readonly IVeranstaltungRepository _veranstaltungRepository;
@@ -39,19 +41,20 @@ namespace PersonalPlanung.Gui.ViewModels
         readonly FileSystemWatcher _watcher;
         readonly Dispatcher _dispatcher;
 
-        public ImportViewModel(IEventAggregator eventAggregator, IPersonRepository personRepository, IRolleRepository rolleRepository, IVeranstaltungRepository veranstaltungRepository, ISchichtRepository schichtRepository)
+        public ImportViewModel(IEventAggregator eventAggregator, IBerufRepository berufRepository, IPersonRepository personRepository, IRolleRepository rolleRepository, IVeranstaltungRepository veranstaltungRepository, ISchichtRepository schichtRepository)
         {
+            _dispatcher = Dispatcher.CurrentDispatcher;
             _eventAggregator = eventAggregator;
+            _berufRepository = berufRepository;
             _personRepository = personRepository;
             _rolleRepository = rolleRepository;
             _veranstaltungRepository = veranstaltungRepository;
             _schichtRepository = schichtRepository;
 
-            _dispatcher = Dispatcher.CurrentDispatcher;
             ImportFiles = new ObservableCollection<ImportFile>();
             ImportFiles.AddRange( GetImportFiles() );
 
-            ImportCommand = new DelegateCommand<ImportFile>(DoImport);
+            ImportCommand = new DelegateCommand<ImportFile>(DoImport, CanImport);
 
             _watcher = new FileSystemWatcher
             {
@@ -64,36 +67,90 @@ namespace PersonalPlanung.Gui.ViewModels
             _watcher.Deleted += OnFileDeleted;
         }
 
+        bool _currentlyImporting;
+        public bool CurrentlyImporting
+        {
+            get => _currentlyImporting;
+            set
+            {
+                _currentlyImporting = value;
+                ImportCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        bool CanImport(ImportFile arg)
+        {
+            return !CurrentlyImporting;
+        }
+
         public ObservableCollection<ImportFile> ImportFiles { get; }
 
         public DelegateCommand<ImportFile> ImportCommand { get; }
         void DoImport(ImportFile file)
         {
-            var importer = new ExcelImporter(file.Fullname);
-            var rollen = new List<Rolle>();
+            CurrentlyImporting = true;
 
-            var personen = importer.ImportierePersonen().Distinct();
-            foreach (var person in personen)
+            Task.Factory.StartNew(() =>
             {
-                rollen.AddRange(person.EinsetzbarAls);
-                _personRepository.Add(person);
-            }
-            foreach (var rolle in rollen.Distinct())
-                _rolleRepository.Add(rolle);
+                var importer = new ExcelImporter(file.Fullname);
 
+                ImportBerufe();
+                ImportPersonenUndRollen(importer);
+                ImportVeranstaltungenUndAufgaben(importer);
+
+                _eventAggregator.GetEvent<ReloadDataEvent>().Publish();
+                CurrentlyImporting = false;
+            });
+        }
+
+        void ImportVeranstaltungenUndAufgaben(ExcelImporter importer)
+        {
+            //var neueVeranstaltungen = new List<Veranstaltung>();
             var veranstaltungen = importer.ImportiereVeranstaltungen().ToList();
             foreach (var veranstaltung in veranstaltungen)
-                _veranstaltungRepository.Add(veranstaltung);
+            {
+                if (!_veranstaltungRepository.Contains(veranstaltung))
+                {
+                    //neueVeranstaltungen.Add(veranstaltung);
+                    _veranstaltungRepository.Add(veranstaltung);
+                }
+            }
 
             foreach (var veranstaltung in veranstaltungen)
             {
                 foreach (var aufgabe in veranstaltung.Aufgaben)
                 {
-                    var schicht = new Schicht { Aufgabe = aufgabe, Veranstaltung = veranstaltung };
+                    var schicht = new Schicht {Aufgabe = aufgabe, Veranstaltung = veranstaltung};
                     _schichtRepository.Add(schicht);
                 }
             }
-            _eventAggregator.GetEvent<ReloadDataEvent>().Publish();
+        }
+
+        void ImportPersonenUndRollen(ExcelImporter importer)
+        {
+            var rollen = new List<Rolle>();
+            var personen = importer.ImportierePersonen();
+            foreach (var person in personen.Distinct())
+            {
+                rollen.AddRange(person.EinsetzbarAls);
+                if (!_personRepository.Contains(person))
+                    _personRepository.Add(person);
+            }
+
+            foreach (var rolle in rollen.Distinct())
+            {
+                if (!_rolleRepository.Contains(rolle))
+                    _rolleRepository.Add(rolle);
+            }
+        }
+
+        void ImportBerufe()
+        {
+            foreach (var beruf in GetPossibleBeruf())
+            {
+                if (!_berufRepository.Contains(beruf))
+                    _berufRepository.Add(beruf);
+            }
         }
 
 
@@ -125,5 +182,14 @@ namespace PersonalPlanung.Gui.ViewModels
             if( !di.Exists ) di.Create();
             return di.GetFiles().Select(fi => new ImportFile(fi.FullName, fi.Name, fi.LastWriteTime));
         }
+
+        IEnumerable<Beruf> GetPossibleBeruf()
+        {
+            yield return Beruf.Rentner;
+            yield return Beruf.Student;
+            yield return Beruf.Kollege;
+            yield return Beruf.Dienstleister;
+        }
+
     }
 }

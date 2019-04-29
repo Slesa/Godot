@@ -7,6 +7,15 @@ namespace PersonalPlanung.Core
     public class RolleRepository : Repository<Rolle>, IRolleRepository {}
     public class PersonRepository : Repository<Person>, IPersonRepository {}
     public class VeranstaltungRepository : Repository<Veranstaltung>, IVeranstaltungRepository {}
-    public class SchichtRepository : Repository<Schicht>, ISchichtRepository {}
-    public class ZeitBuchungRepository : Repository<ZeitBuchung>, IZeitBuchungRepository {}
+
+    public class SchichtRepository : Repository<Schicht>, ISchichtRepository
+    {
+        public void Save() {}
+    }
+
+    public class ZeitBuchungRepository : Repository<ZeitBuchung>, IZeitBuchungRepository
+    {
+        public void BeginChanges() { }
+        public void Save() { }
+    }
 }

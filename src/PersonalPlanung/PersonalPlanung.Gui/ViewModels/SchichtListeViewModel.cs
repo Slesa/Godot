@@ -39,7 +39,7 @@ namespace PersonalPlanung.Gui.ViewModels
         public ObservableCollection<Schicht> Schichten { get; set; }
 
         #region Schicht planen
-        public DelegateCommand PlaneSchichtCommand { get; private set; }
+        public DelegateCommand PlaneSchichtCommand { get; }
         void OnPlaneSchicht()
         {
             _schichtPlaner.Plane(DateTime.Now);
@@ -48,7 +48,7 @@ namespace PersonalPlanung.Gui.ViewModels
         #endregion
 
         #region Selection
-        public DelegateCommand<Schicht> SchichtSelectedCommand { get; private set; }
+        public DelegateCommand<Schicht> SchichtSelectedCommand { get; }
         void SchichtSelected(Schicht schicht)
         {
             var parameters = new NavigationParameters { { "schicht", schicht } };

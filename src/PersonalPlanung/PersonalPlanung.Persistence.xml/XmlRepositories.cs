@@ -32,6 +32,17 @@ namespace PersonalPlanung.Persistence.xml
         }
     }
 
-    //public class SchichtenRepository : Repository<Schicht>, ISchichtRepository { }
-    //public class ZeitBuchungsRepository : Repository<ZeitBuchung>, IZeitBuchungRepository { }
+    public class SchichtenXmlRepository : XmlRepository<Schicht, SchichtenXmlPersister>, ISchichtRepository
+    {
+        public SchichtenXmlRepository(SchichtenXmlPersister persister) : base(persister)
+        {
+        }
+    }
+
+    public class ZeitBuchungsXmlRepository : XmlRepository<ZeitBuchung, ZeitBuchungsXmlPersister>, IZeitBuchungRepository
+    {
+        public ZeitBuchungsXmlRepository(ZeitBuchungsXmlPersister persister) : base(persister)
+        {
+        }
+    }
 }

@@ -22,6 +22,7 @@
             <collections:ArrayList x:Key="MenuItems">
                 <viewModels:ShellMenuItem Name="Schichten" Icon="{StaticResource Images.Schicht}" ViewName="SchichtListeView" />
                 <viewModels:ShellMenuItem Name="Veranstaltungen" Icon="{StaticResource Images.Veranstaltung}" ViewName="VeranstaltungsListeView" />
+                <viewModels:ShellMenuItem Name="Zeiten" Icon="{StaticResource Images.Zeit}" ViewName="ZeitBuchungsListeView" />
                 <viewModels:ShellMenuItem Name="Personal" Icon="{StaticResource Images.Personal}" ViewName="PersonenListeView" />
                 <viewModels:ShellMenuItem Name="Import" Icon="{StaticResource Images.Import}" ViewName="ImportView" />
             </collections:ArrayList>

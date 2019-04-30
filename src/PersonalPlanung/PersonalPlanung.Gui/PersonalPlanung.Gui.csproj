@@ -85,6 +85,8 @@
     <Compile Include="ViewModels\VeranstaltungsEditViewModel.cs" />
     <Compile Include="ViewModels\VeranstaltungsListeViewModel.cs" />
     <Compile Include="ViewModels\VeranstaltungsViewModel.cs" />
+    <Compile Include="ViewModels\ZeitBuchungsListeViewModel.cs" />
+    <Compile Include="ViewModels\ZeitBuchungsViewModel.cs" />
     <Compile Include="Views\ImportView.xaml.cs">
       <DependentUpon>ImportView.xaml</DependentUpon>
     </Compile>

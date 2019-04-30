@@ -19,6 +19,7 @@ namespace PersonalPlanung.Gui
             containerRegistry.RegisterForNavigation<SchichtListeView>();
             containerRegistry.RegisterForNavigation<VeranstaltungsListeView>();
             containerRegistry.RegisterForNavigation<VeranstaltungsEditView>();
+            containerRegistry.RegisterForNavigation<ZeitBuchungsListeView>();
             containerRegistry.RegisterForNavigation<PersonenListeView>();
             containerRegistry.RegisterForNavigation<PersonenEditView>();
             containerRegistry.RegisterForNavigation<ImportView>();
@@ -73,7 +74,7 @@ namespace PersonalPlanung.Gui
             eventAggregator.GetEvent<ReloadDataEvent>().Publish();
             */
         }
-
+        /*
         IEnumerable<Beruf> GetPossibleBeruf()
         {
             yield return Beruf.Rentner;
@@ -81,5 +82,6 @@ namespace PersonalPlanung.Gui
             yield return Beruf.Kollege;
             yield return Beruf.Dienstleister;
         }
+        */
     }
 }

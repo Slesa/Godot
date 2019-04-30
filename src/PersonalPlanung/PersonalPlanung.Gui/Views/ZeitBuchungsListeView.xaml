@@ -5,10 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PersonalPlanung.Gui.Views"
              xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:converter="clr-namespace:PersonalPlanung.Gui.Converter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-            
-    </Grid>
+
+    <UserControl.Resources>
+        <converter:DatumZuStringConverter x:Key="DatumZuStringConverter" />
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <!--<ContentControl Margin="10" DockPanel.Dock="Bottom" regions:RegionManager.RegionName="ZeitBuchungsEditRegion" />-->
+
+        <ListView x:Name="_veranstaltungsListe" ItemsSource="{Binding ZeitBuchungen}">
+            <!-- i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <regions:InvokeCommandAction Command="{Binding VeranstaltungSelectedCommand}" CommandParameter="{Binding SelectedItem, ElementName=_veranstaltungsListe}" />
+                </i:EventTrigger>
+            </ -->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Wann" DisplayMemberBinding="{Binding Wann, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Zeit" DisplayMemberBinding="{Binding Zeit}" Width="Auto" />
+                    <GridViewColumn Header="Satz" DisplayMemberBinding="{Binding MinutenSatz}" Width="Auto" />
+                    <GridViewColumn Header="Rolle" DisplayMemberBinding="{Binding RollenName}" Width="Auto" />
+                    <GridViewColumn Header="Person" DisplayMemberBinding="{Binding PersonenName}" Width="Auto" />
+                    <GridViewColumn Header="Verbucht" Width="60">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Verbucht, Mode=OneWay}" IsEnabled="False" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <!-- GridViewColumn Header="Minuten" DisplayMemberBinding="{Binding BeginntAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Endet" DisplayMemberBinding="{Binding EndetAm, Converter={StaticResource DatumZuStringConverter}}" Width="Auto" />
+                    <GridViewColumn Header="Aufgabe" DisplayMemberBinding="{Binding AufgabenAnzahl}" Width="Auto" / -->
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </DockPanel>
+
 </UserControl>

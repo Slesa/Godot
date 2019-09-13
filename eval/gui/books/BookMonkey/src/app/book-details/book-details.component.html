@@ -1,4 +1,4 @@
-<div *ngIf="book">
+<div *ngIf="book; else loading">
     <h1>{{ book.title }}</h1>
     <h3 *ngIf="book.subtitle">{{ book.subtitle }}</h3>
     <div class="ui divider"></div>
@@ -31,3 +31,7 @@
         Zurück zur Buchliste
     </button>
 </div>
+
+<ng-template #loading>
+    <div class="ui active centered inline loader"></div>
+</ng-template>
